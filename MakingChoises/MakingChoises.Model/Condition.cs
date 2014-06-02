@@ -1,11 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="Condition.cs" company="">
+//   
+// </copyright>
+// <summary>
+//   The condition.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
 namespace MakingChoises.Model
 {
+    /// <summary>
+    ///     The condition.
+    /// </summary>
     public class Condition
     {
     }

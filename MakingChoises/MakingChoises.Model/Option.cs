@@ -1,14 +1,32 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="Option.cs" company="">
+//   
+// </copyright>
+// <summary>
+//   The option.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
 namespace MakingChoises.Model
 {
+    using System.Collections.Generic;
+
+    /// <summary>
+    ///     The option.
+    /// </summary>
     public class Option
     {
-        public string Text { get; set; }
+        #region Public Properties
+
+        /// <summary>
+        ///     Gets or sets the routes.
+        /// </summary>
         public List<Route> Routes { get; set; }
+
+        /// <summary>
+        ///     Gets or sets the text.
+        /// </summary>
+        public string Text { get; set; }
+
+        #endregion
     }
 }
