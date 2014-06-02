@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="ProblemValidator.cs" company="">
-//   
+// <copyright file="ProblemValidator.cs" company="Wouyoshi BV">
+//   W. Schutten
 // </copyright>
 // <summary>
 //   The problem validator.
@@ -22,12 +22,12 @@ namespace MakingChoises.BusinessLogic.Validation
         #region Constants
 
         /// <summary>
-        /// The message template.
+        ///     The used message template.
         /// </summary>
         private const string UsedMessageTemplate = "";
 
         /// <summary>
-        /// The tag.
+        ///     The used tag.
         /// </summary>
         private const string UsedTag = "";
 

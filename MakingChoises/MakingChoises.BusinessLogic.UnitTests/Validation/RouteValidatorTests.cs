@@ -1,9 +1,9 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="ConditionValidatorTests.cs" company="Wouyoshi BV">
+// <copyright file="RouteValidatorTests.cs" company="Wouyoshi BV">
 //   W. Schutten
 // </copyright>
 // <summary>
-//   The condition validator tests.
+//   The route validator tests.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 namespace MakingChoises.BusinessLogic.UnitTests.Validation
@@ -14,23 +14,19 @@ namespace MakingChoises.BusinessLogic.UnitTests.Validation
     using Microsoft.Practices.EnterpriseLibrary.Validation;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-    /// <summary>
-    ///     The condition validator tests.
-    /// </summary>
+    /// <summary>The route validator tests.</summary>
     [TestClass]
-    public class ConditionValidatorTests
+    public class RouteValidatorTests
     {
         #region Public Methods and Operators
 
-        /// <summary>
-        ///     The condition validator test.
-        /// </summary>
+        /// <summary>The route validator test.</summary>
         [TestMethod]
-        public void ConditionValidatorTest()
+        public void RouteValidatorTest()
         {
-            var conditionValidator = new ConditionValidator();
-            var condition = new Condition();
-            ValidationResults result = conditionValidator.Validate(condition);
+            var routeValidator = new RouteValidator();
+            var route = new Route();
+            ValidationResults result = routeValidator.Validate(route);
         }
 
         #endregion

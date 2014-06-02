@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="Step.cs" company="">
-//   
+// <copyright file="Step.cs" company="Wouyoshi BV">
+//   W. Schutten
 // </copyright>
 // <summary>
 //   The step.

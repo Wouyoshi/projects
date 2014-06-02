@@ -59,6 +59,11 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Validation\ConditionValidatorTests.cs" />
+    <Compile Include="Validation\OptionValidatorTests.cs" />
+    <Compile Include="Validation\ProblemValidatorTests.cs" />
+    <Compile Include="Validation\RouteValidatorTests.cs" />
+    <Compile Include="Validation\StepValidatorTests.cs" />
+    <Compile Include="Validation\StoryValidatorTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MakingChoises.BusinessLogic\MakingChoises.BusinessLogic.csproj">

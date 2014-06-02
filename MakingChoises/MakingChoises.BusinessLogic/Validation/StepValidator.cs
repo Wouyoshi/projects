@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="StepValidator.cs" company="">
-//   
+// <copyright file="StepValidator.cs" company="Wouyoshi BV">
+//   W. Schutten
 // </copyright>
 // <summary>
 //   The step validator.
@@ -22,12 +22,12 @@ namespace MakingChoises.BusinessLogic.Validation
         #region Constants
 
         /// <summary>
-        /// The message template.
+        ///     The used message template.
         /// </summary>
         private const string UsedMessageTemplate = "";
 
         /// <summary>
-        /// The tag.
+        ///     The used tag.
         /// </summary>
         private const string UsedTag = "";
 

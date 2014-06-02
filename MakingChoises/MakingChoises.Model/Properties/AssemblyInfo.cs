@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="AssemblyInfo.cs" company="">
-//   
+// <copyright file="AssemblyInfo.cs" company="Wouyoshi BV">
+//   W. Schutten
 // </copyright>
 // <summary>
 //   AssemblyInfo.cs

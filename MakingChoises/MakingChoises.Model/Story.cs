@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="Story.cs" company="">
-//   
+// <copyright file="Story.cs" company="Wouyoshi BV">
+//   W. Schutten
 // </copyright>
 // <summary>
 //   The story.

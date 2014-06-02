@@ -1,12 +1,11 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="StoryValidator.cs" company="W">
-//   
+// <copyright file="StoryValidator.cs" company="Wouyoshi BV">
+//   W. Schutten
 // </copyright>
 // <summary>
 //   The story validator.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace MakingChoises.BusinessLogic.Validation
 {
     using System;
@@ -23,12 +22,12 @@ namespace MakingChoises.BusinessLogic.Validation
         #region Constants
 
         /// <summary>
-        ///     The message template.
+        ///     The used message template.
         /// </summary>
         private const string UsedMessageTemplate = "";
 
         /// <summary>
-        ///     The tag.
+        ///     The used tag.
         /// </summary>
         private const string UsedTag = "";
 

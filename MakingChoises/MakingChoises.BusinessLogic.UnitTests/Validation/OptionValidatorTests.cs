@@ -1,9 +1,9 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="ConditionValidatorTests.cs" company="Wouyoshi BV">
+// <copyright file="OptionValidatorTests.cs" company="Wouyoshi BV">
 //   W. Schutten
 // </copyright>
 // <summary>
-//   The condition validator tests.
+//   The option validator tests.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 namespace MakingChoises.BusinessLogic.UnitTests.Validation
@@ -14,23 +14,19 @@ namespace MakingChoises.BusinessLogic.UnitTests.Validation
     using Microsoft.Practices.EnterpriseLibrary.Validation;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-    /// <summary>
-    ///     The condition validator tests.
-    /// </summary>
+    /// <summary>The option validator tests.</summary>
     [TestClass]
-    public class ConditionValidatorTests
+    public class OptionValidatorTests
     {
         #region Public Methods and Operators
 
-        /// <summary>
-        ///     The condition validator test.
-        /// </summary>
+        /// <summary>The option validator test.</summary>
         [TestMethod]
-        public void ConditionValidatorTest()
+        public void OptionValidatorTest()
         {
-            var conditionValidator = new ConditionValidator();
-            var condition = new Condition();
-            ValidationResults result = conditionValidator.Validate(condition);
+            var optionValidator = new OptionValidator();
+            var option = new Option();
+            ValidationResults result = optionValidator.Validate(option);
         }
 
         #endregion

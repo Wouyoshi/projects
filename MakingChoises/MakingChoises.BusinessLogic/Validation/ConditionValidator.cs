@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="ConditionValidator.cs" company="">
-//   
+// <copyright file="ConditionValidator.cs" company="Wouyoshi BV">
+//   W. Schutten
 // </copyright>
 // <summary>
 //   The condition validator.
@@ -22,12 +22,12 @@ namespace MakingChoises.BusinessLogic.Validation
         #region Constants
 
         /// <summary>
-        ///     The message template.
+        ///     The used message template.
         /// </summary>
         private const string UsedMessageTemplate = "";
 
         /// <summary>
-        ///     The tag.
+        ///     The used tag.
         /// </summary>
         private const string UsedTag = "";
 
@@ -74,7 +74,6 @@ namespace MakingChoises.BusinessLogic.Validation
             string key, 
             ValidationResults validationResults)
         {
-            throw new NotImplementedException();
         }
 
         #endregion
