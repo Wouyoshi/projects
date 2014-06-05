@@ -20,7 +20,12 @@ namespace MakingChoises.Model
         /// <summary>
         ///     Gets or sets the conditions.
         /// </summary>
-        public IList<Condition> Conditions { get; set; }
+        public virtual IList<Condition> Conditions { get; set; }
+
+        /// <summary>
+        ///     Gets or sets the id.
+        /// </summary>
+        public int Id { get; set; }
 
         /// <summary>
         ///     Gets or sets the next problem.

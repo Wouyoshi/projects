@@ -18,9 +18,14 @@ namespace MakingChoises.Model
         #region Public Properties
 
         /// <summary>
+        ///     Gets or sets the id.
+        /// </summary>
+        public int Id { get; set; }
+
+        /// <summary>
         ///     Gets or sets the routes.
         /// </summary>
-        public List<Route> Routes { get; set; }
+        public virtual IList<Route> Routes { get; set; }
 
         /// <summary>
         ///     Gets or sets the text.

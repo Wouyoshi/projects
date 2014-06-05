@@ -13,5 +13,13 @@ namespace MakingChoises.Model
     /// </summary>
     public class Condition
     {
+        #region Public Properties
+
+        /// <summary>
+        ///     Gets or sets the id.
+        /// </summary>
+        public int Id { get; set; }
+
+        #endregion
     }
 }

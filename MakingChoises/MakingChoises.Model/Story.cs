@@ -18,9 +18,14 @@ namespace MakingChoises.Model
         #region Public Properties
 
         /// <summary>
+        ///     Gets or sets the id.
+        /// </summary>
+        public int Id { get; set; }
+
+        /// <summary>
         ///     Gets or sets the steps.
         /// </summary>
-        public IList<Step> Steps { get; set; }
+        public virtual IList<Step> Steps { get; set; }
 
         #endregion
     }

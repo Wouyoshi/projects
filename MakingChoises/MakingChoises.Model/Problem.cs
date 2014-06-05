@@ -18,9 +18,14 @@ namespace MakingChoises.Model
         #region Public Properties
 
         /// <summary>
+        ///     Gets or sets the id.
+        /// </summary>
+        public int Id { get; set; }
+
+        /// <summary>
         ///     Gets or sets the options.
         /// </summary>
-        public List<Option> Options { get; set; }
+        public virtual IList<Option> Options { get; set; }
 
         /// <summary>
         ///     Gets or sets the text.

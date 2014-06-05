@@ -24,12 +24,12 @@ namespace MakingChoises.BusinessLogic.Validation
         /// <summary>
         ///     The used message template.
         /// </summary>
-        private const string UsedMessageTemplate = "";
+        private const string UsedMessageTemplate = null;
 
         /// <summary>
         ///     The used tag.
         /// </summary>
-        private const string UsedTag = "";
+        private const string UsedTag = null;
 
         #endregion
 

@@ -18,6 +18,11 @@ namespace MakingChoises.Model
         #region Public Properties
 
         /// <summary>
+        ///     Gets or sets the id.
+        /// </summary>
+        public int Id { get; set; }
+
+        /// <summary>
         ///     Gets or sets the number.
         /// </summary>
         public int Number { get; set; }
@@ -25,7 +30,7 @@ namespace MakingChoises.Model
         /// <summary>
         ///     Gets or sets the problems.
         /// </summary>
-        public IList<Problem> Problems { get; set; }
+        public virtual IList<Problem> Problems { get; set; }
 
         #endregion
     }
