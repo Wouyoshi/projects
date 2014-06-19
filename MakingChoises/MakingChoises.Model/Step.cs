@@ -32,6 +32,11 @@ namespace MakingChoises.Model
         /// </summary>
         public virtual IList<Problem> Problems { get; set; }
 
+        /// <summary>
+        /// Gets or sets the next step.
+        /// </summary>
+        public Step NextStep { get; set; }
+
         #endregion
     }
 }
