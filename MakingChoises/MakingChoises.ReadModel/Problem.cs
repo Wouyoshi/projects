@@ -1,26 +1,20 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="Route.cs" company="Wouyoshi BV">
+// <copyright file="Problem.cs" company="Wouyoshi BV">
 //   W. Schutten
 // </copyright>
 // <summary>
-//   The route.
+//   The problem.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace MakingChoises.Model
+
+namespace MakingChoises.ReadModel
 {
     using System.Collections.Generic;
 
-    /// <summary>
-    ///     The route.
-    /// </summary>
-    public class Route
+    /// <summary>The problem.</summary>
+    public class Problem
     {
         #region Public Properties
-
-        /// <summary>
-        ///     Gets or sets the conditions.
-        /// </summary>
-        public virtual IList<Condition> Conditions { get; set; }
 
         /// <summary>
         ///     Gets or sets the id.
@@ -28,14 +22,14 @@ namespace MakingChoises.Model
         public int Id { get; set; }
 
         /// <summary>
-        ///     Gets or sets the number.
+        ///     Gets or sets the options.
         /// </summary>
-        public int Number { get; set; }
+        public virtual IList<Option> Options { get; set; }
 
         /// <summary>
-        ///     Gets or sets the next problem.
+        ///     Gets or sets the text.
         /// </summary>
-        public Problem NextProblem { get; set; }
+        public string Text { get; set; }
 
         #endregion
     }

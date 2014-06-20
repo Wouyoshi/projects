@@ -181,7 +181,8 @@ namespace MakingChoises.Console
             return new Step
                        {
                            Number = 2, 
-                           Problems = MakeExampleStep2Problems(nextStep.Problems[0], nextStep.Problems[1])
+                           Problems = MakeExampleStep2Problems(nextStep.Problems[0], nextStep.Problems[1]),
+                           NextStep = nextStep
                        };
         }
 

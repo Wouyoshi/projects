@@ -23,7 +23,10 @@ namespace MakingChoises.Console
         private static void Main(string[] args)
         {
             var dbContext = new DatabaseContext();
-            dbContext.Conditions.Add(new Condition { Id = 1 });
+            //dbContext.Conditions.Add(new Condition { Id = 1 });
+            var story = ExampleStoryGenerator.MakeExampleStory();
+            dbContext.Stories.Add(story);
+            dbContext.SaveChanges();
             Console.ReadKey();
         }
 
