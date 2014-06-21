@@ -40,7 +40,7 @@ namespace MakingChoises.Model
         public string Name { get; set; }
 
         /// <summary>
-        ///     Gets or sets the steps.
+        ///     Gets the steps.
         /// </summary>
         public virtual IList<Step> Steps { get; private set; }
 

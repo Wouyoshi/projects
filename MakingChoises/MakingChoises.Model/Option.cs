@@ -40,9 +40,9 @@ namespace MakingChoises.Model
         public int Number { get; set; }
 
         /// <summary>
-        ///     Gets or sets the routes.
+        ///     Gets the routes.
         /// </summary>
-        public virtual IList<Route> Routes { get; set; }
+        public virtual IList<Route> Routes { get; private set; }
 
         /// <summary>
         ///     Gets or sets the text.

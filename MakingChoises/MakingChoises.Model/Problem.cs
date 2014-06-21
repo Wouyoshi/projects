@@ -33,9 +33,9 @@ namespace MakingChoises.Model
         public int Id { get; set; }
 
         /// <summary>
-        ///     Gets or sets the options.
+        ///     Gets the options.
         /// </summary>
-        public virtual IList<Option> Options { get; set; }
+        public virtual IList<Option> Options { get; private set; }
 
         /// <summary>
         ///     Gets or sets the text.

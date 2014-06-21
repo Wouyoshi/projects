@@ -65,9 +65,8 @@ namespace MakingChoises.Console
             Problem step2Problem2, 
             Problem step2Problem3)
         {
-            return new Problem
+            var problem = new Problem
                        {
-                           Options = MakeExampleStep1Problem1Options(step2Problem1, step2Problem2, step2Problem3), 
                            Text =
                                "You wake up finding yourself in a small room lying on the ground. Your head hurts terribly. "
                                + "You don't remember anything. Slowly you manage to stand up. "
@@ -77,6 +76,14 @@ namespace MakingChoises.Console
                                + "Suddenly you hear footsteps comming your way from the hallway. "
                                + "What do you do?"
                        };
+
+            var options = MakeExampleStep1Problem1Options(step2Problem1, step2Problem2, step2Problem3);
+            foreach (var option in options)
+            {
+                problem.Options.Add(option);
+            }
+
+            return problem;
         }
 
         /// <summary>The make example step 1 problem 1 option 1.</summary>
@@ -84,7 +91,14 @@ namespace MakingChoises.Console
         /// <returns>The <see cref="Option"/>.</returns>
         private static Option MakeExampleStep1Problem1Option1(Problem nextProblem)
         {
-            return new Option { Number = 1, Routes = MakeExampleStep1Problem1Option1Routes(nextProblem), Text = "Grab the knife." };
+            var option = new Option { Number = 1, Text = "Grab the knife." };
+            var routes = MakeExampleStep1Problem1Option1Routes(nextProblem);
+            foreach (var route in routes)
+            {
+                option.Routes.Add(route);
+            }
+
+            return option;
         }
 
         /// <summary>The make example step 1 problem 1 option 1 route 1.</summary>
@@ -108,12 +122,14 @@ namespace MakingChoises.Console
         /// <returns>The <see cref="Option"/>.</returns>
         private static Option MakeExampleStep1Problem1Option2(Problem nextProblem)
         {
-            return new Option
-                       {
-                           Number = 2,
-                           Routes = MakeExampleStep1Problem1Option2Routes(nextProblem), 
-                           Text = "Hide behind the crates."
-                       };
+            var option = new Option { Number = 2, Text = "Hide behind the crates." };
+            var routes = MakeExampleStep1Problem1Option2Routes(nextProblem);
+            foreach (var route in routes)
+            {
+                option.Routes.Add(route);
+            }
+
+            return option;
         }
 
         /// <summary>The make example step 1 problem 1 option 2 route 1.</summary>
@@ -137,12 +153,18 @@ namespace MakingChoises.Console
         /// <returns>The <see cref="Option"/>.</returns>
         private static Option MakeExampleStep1Problem1Option3(Problem nextProblem)
         {
-            return new Option
+            var option = new Option
             {
                 Number = 3,
-                Routes = MakeExampleStep1Problem1Option3Routes(nextProblem),
                 Text = "Call for help."
             };
+            var routes = MakeExampleStep1Problem1Option3Routes(nextProblem);
+            foreach (var route in routes)
+            {
+                option.Routes.Add(route);
+            }
+
+            return option;
         }
 
         /// <summary>The make example step 1 problem 1 option 3 route 1.</summary>
@@ -218,9 +240,8 @@ namespace MakingChoises.Console
         /// <returns>The <see cref="Problem"/>.</returns>
         private static Problem MakeExampleStep2Problem1(Problem step3Problem1, Problem step3Problem2)
         {
-            return new Problem
+            var problem = new Problem
                        {
-                           Options = MakeExampleStep2Problem1Options(step3Problem1, step3Problem2), 
                            Text =
                                "You grab the knife from the stack of crates. The footsteps are getting faster and louder. "
                                + "Your heart is starting to pound really fast while the footsteps are getting closer."
@@ -228,6 +249,14 @@ namespace MakingChoises.Console
                                + "He sees you. He's looking angry at you. He quickly opens the door. "
                                + "What do you do?"
                        };
+
+            var options = MakeExampleStep2Problem1Options(step3Problem1, step3Problem2);
+            foreach (var option in options)
+            {
+                problem.Options.Add(option);
+            }
+
+            return problem;
         }
 
         /// <summary>The make example step 2 problem 1 option 1.</summary>
@@ -235,12 +264,19 @@ namespace MakingChoises.Console
         /// <returns>The <see cref="Option"/>.</returns>
         private static Option MakeExampleStep2Problem1Option1(Problem nextProblem)
         {
-            return new Option
+            var option = new Option
             {
                 Number = 1,
-                Routes = MakeExampleStep2Problem1Option1Routes(nextProblem),
                 Text = "Stab the man."
             };
+
+            var routes = MakeExampleStep2Problem1Option1Routes(nextProblem);
+            foreach (var route in routes)
+            {
+                option.Routes.Add(route);
+            }
+
+            return option;
         }
 
         /// <summary>The make example step 2 problem 1 option 1 route 1.</summary>
@@ -264,12 +300,19 @@ namespace MakingChoises.Console
         /// <returns>The <see cref="Option"/>.</returns>
         private static Option MakeExampleStep2Problem1Option2(Problem nextProblem)
         {
-            return new Option
+            var option = new Option
             {
                 Number = 2,
-                Routes = MakeExampleStep2Problem1Option2Routes(nextProblem),
                 Text = "Call for help."
             };
+
+            var routes = MakeExampleStep2Problem1Option2Routes(nextProblem);
+            foreach (var route in routes)
+            {
+                option.Routes.Add(route);
+            }
+
+            return option;
         }
 
         /// <summary>The make example step 2 problem 1 option 2 route 1.</summary>
@@ -306,9 +349,8 @@ namespace MakingChoises.Console
         /// <returns>The <see cref="Problem"/>.</returns>
         private static Problem MakeExampleStep2Problem2(Problem step3Problem1, Problem step3Problem2)
         {
-            return new Problem
-                       {
-                           Options = MakeExampleStep2Problem2Options(step3Problem1, step3Problem2), 
+            var problem = new Problem
+                       { 
                            Text =
                                "You hide behind the stack of crates. The footsteps are getting faster and louder. "
                                + "Your heart is starting to pound really fast while the footsteps are getting closer."
@@ -316,6 +358,14 @@ namespace MakingChoises.Console
                                + "Through the glass door you see a man holding a large knife, it looks the same as the knife that's lying on the crate."
                                + "He spotted you. He looks angry and quickly opens the door. " + "What do you do?"
                        };
+
+            var options = MakeExampleStep2Problem2Options(step3Problem1, step3Problem2);
+            foreach (var option in options)
+            {
+                problem.Options.Add(option);
+            }
+
+            return problem;
         }
 
         /// <summary>The make example step 2 problem 2 option 1.</summary>
@@ -323,12 +373,19 @@ namespace MakingChoises.Console
         /// <returns>The <see cref="Option"/>.</returns>
         private static Option MakeExampleStep2Problem2Option1(Problem nextProblem)
         {
-            return new Option
+            var option = new Option
                        {
                            Number = 1,
-                           Routes = MakeExampleStep2Problem2Option1Routes(nextProblem),
                            Text = "Throw the knife at the man."
                        };
+
+            var routes = MakeExampleStep2Problem2Option1Routes(nextProblem);
+            foreach (var route in routes)
+            {
+                option.Routes.Add(route);
+            }
+
+            return option;
         }
 
         /// <summary>The make example step 2 problem 2 option 1 route 1.</summary>
@@ -352,12 +409,19 @@ namespace MakingChoises.Console
         /// <returns>The <see cref="Option"/>.</returns>
         private static Option MakeExampleStep2Problem2Option2(Problem nextProblem)
         {
-            return new Option
+            var option = new Option
             {
                 Number = 2,
-                Routes = MakeExampleStep2Problem2Option2Routes(nextProblem),
                 Text = "Call for help."
             };
+            
+            var routes = MakeExampleStep2Problem2Option2Routes(nextProblem);
+            foreach (var route in routes)
+            {
+                option.Routes.Add(route);
+            }
+
+            return option;
         }
 
         /// <summary>The make example step 2 problem 2 option 2 route 1.</summary>
@@ -411,6 +475,7 @@ namespace MakingChoises.Console
             {
                 step.Problems.Add(problem);
             }
+
             return step;
         }
 
@@ -420,7 +485,6 @@ namespace MakingChoises.Console
         {
             return new Problem
                        {
-                           Options = null, 
                            Text =
                                "The man falls down as your knife cut his throath. As he is falling down you begin to remember what happened. "
                                + "You're working in a meat processing plant. You are in charge of cleaning the floors. "
@@ -435,7 +499,6 @@ namespace MakingChoises.Console
         {
             return new Problem
                        {
-                           Options = null, 
                            Text =
                                "As you start to yell, you begin to remember what happened. "
                                + "You're working in a meat processing plant. You are in charge of cleaning the floors. "

@@ -45,7 +45,7 @@ namespace MakingChoises.Model
         public int Number { get; set; }
 
         /// <summary>
-        ///     Gets or sets the problems.
+        ///     Gets the problems.
         /// </summary>
         public virtual IList<Problem> Problems { get; private set; }
 
