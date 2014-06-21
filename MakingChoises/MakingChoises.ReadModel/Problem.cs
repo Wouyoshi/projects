@@ -15,12 +15,7 @@ namespace MakingChoises.ReadModel
     public class Problem
     {
         #region Public Properties
-
-        /// <summary>
-        ///     Gets or sets the id.
-        /// </summary>
-        public int Id { get; set; }
-
+        
         /// <summary>
         ///     Gets or sets the options.
         /// </summary>

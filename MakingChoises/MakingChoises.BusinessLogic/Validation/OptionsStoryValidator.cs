@@ -22,7 +22,6 @@ namespace MakingChoises.BusinessLogic.Validation
     /// </summary>
     public class OptionsStoryValidator : Validator<IList<int>>
     {
-
         #region Constants
 
         /// <summary>
@@ -107,27 +106,70 @@ namespace MakingChoises.BusinessLogic.Validation
             }
 
             var firstProblem = firstStepProblems.First();
-            var firstProblemOptions = firstProblem.Options;
-            if (firstProblemOptions.Count < 1)
+
+            this.CheckProblems(validationResults, firstProblem, objectToValidate, 0,currentTarget, key);
+        }
+
+        /// <summary>The check problems.</summary>
+        /// <param name="validationResults">The validation results.</param>
+        /// <param name="currentProblem">The current problem.</param>
+        /// <param name="options">The options.</param>
+        /// <param name="currentOption">The current option.</param>
+        /// <param name="currentTarget">The current target.</param>
+        /// <param name="key">The key.</param>
+        private void CheckProblems(
+            ValidationResults validationResults,
+            Problem currentProblem,
+            IList<int> options,
+            int currentOption,
+            object currentTarget,
+            string key)
+        {
+            var currentProblemOptions = currentProblem.Options;
+
+            // If there are no options at all, just return.
+            if (currentProblemOptions.Count == 0)
             {
-                validationResults.AddResult(new ValidationResult("First problem should have at least 1 option.", currentTarget, key, "STOR003", this));
+                if (currentOption == 0)
+                {
+                    validationResults.AddResult(new ValidationResult("First problem should have at least 1 option.", currentTarget, key, "STOR003", this)); 
+                }
+
                 return;
             }
 
-            var firstOptionChosen = firstProblem.Options.FirstOrDefault(fp => fp.Number == objectToValidate[0]);
-            if (firstOptionChosen == null)
+            var currentOptionChosen = currentProblemOptions.FirstOrDefault(fp => fp.Number == options[currentOption]);
+            if (currentOptionChosen == null)
             {
-                validationResults.AddResult(new ValidationResult(string.Format("{0} is not a valid option.", objectToValidate[0]), currentTarget, key, "STOR004", this));
+                validationResults.AddResult(new ValidationResult(string.Format("{0} is not a valid option.", options[currentOption]), currentTarget, key, "STOR004", this));
                 return;
             }
-            
+
             // Todo: Check for conditions here.
-            var routeFollowed = firstOptionChosen.Routes.FirstOrDefault();
+            var routeFollowed = currentOptionChosen.Routes.FirstOrDefault();
             if (routeFollowed == null)
             {
                 validationResults.AddResult(new ValidationResult("There was no valid route.", currentTarget, key, "STOR005", this));
                 return;
             }
+
+            currentOption = currentOption + 1;
+
+            // Just return if the options stop.
+            if (currentOption >= options.Count)
+            {
+                return;
+            }
+
+            var nextProblem = routeFollowed.NextProblem;
+            if (nextProblem == null)
+            {
+                validationResults.AddResult(new ValidationResult("There was no next problem for the route.", currentTarget, key, "STOR006", this));
+                return;
+            }
+
+            // Check next.
+            this.CheckProblems(validationResults, nextProblem, options, currentOption, currentTarget, key);
         }
 
         #endregion
