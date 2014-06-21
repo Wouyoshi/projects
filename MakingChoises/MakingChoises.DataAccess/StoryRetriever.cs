@@ -37,7 +37,7 @@ namespace MakingChoises.DataAccess
         /// <param name="storyName">The story name.</param>
         /// <returns>The <see cref="Story"/>.</returns>
         /// <exception cref="ArgumentNullException">Thrown when storyName is null.</exception>
-        private Story GetStoryByName(string storyName)
+        public Story GetStoryByName(string storyName)
         {
             if (string.IsNullOrWhiteSpace(storyName))
             {

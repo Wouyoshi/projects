@@ -57,6 +57,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\MakingChoises.BusinessLogic\MakingChoises.BusinessLogic.csproj">
+      <Project>{9DAC0817-F752-41ED-926F-FDDE5110E813}</Project>
+      <Name>MakingChoises.BusinessLogic</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MakingChoises.DataAccess\MakingChoises.DataAccess.csproj">
       <Project>{85C88976-B706-4CEC-AA47-9A3527452F44}</Project>
       <Name>MakingChoises.DataAccess</Name>
@@ -64,6 +68,10 @@
     <ProjectReference Include="..\MakingChoises.Model\MakingChoises.Model.csproj">
       <Project>{bdb6e847-d908-4f0b-b662-e8c6a9a43b31}</Project>
       <Name>MakingChoises.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MakingChoises.ReadModel\MakingChoises.ReadModel.csproj">
+      <Project>{8d120fc5-351f-422b-8802-38b3a822bb4f}</Project>
+      <Name>MakingChoises.ReadModel</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

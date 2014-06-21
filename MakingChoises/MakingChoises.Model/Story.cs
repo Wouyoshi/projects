@@ -9,12 +9,23 @@
 namespace MakingChoises.Model
 {
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
 
     /// <summary>
     ///     The story.
     /// </summary>
     public class Story
     {
+        #region Constructors and Destructors
+
+        /// <summary>Initializes a new instance of the <see cref="Story"/> class.</summary>
+        public Story()
+        {
+            this.Steps = new List<Step>();
+        }
+
+        #endregion
+
         #region Public Properties
 
         /// <summary>
@@ -23,14 +34,15 @@ namespace MakingChoises.Model
         public int Id { get; set; }
 
         /// <summary>
-        /// Gets or sets the name.
+        ///     Gets or sets the name.
         /// </summary>
+        [Required]
         public string Name { get; set; }
 
         /// <summary>
         ///     Gets or sets the steps.
         /// </summary>
-        public virtual IList<Step> Steps { get; set; }
+        public virtual IList<Step> Steps { get; private set; }
 
         #endregion
     }

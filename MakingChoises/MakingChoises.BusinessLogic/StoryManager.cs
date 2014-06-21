@@ -3,7 +3,6 @@
 //   W. Schutten
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace MakingChoises.BusinessLogic
 {
     using System;
@@ -45,6 +44,9 @@ namespace MakingChoises.BusinessLogic
             }
 
             this.storyRetriever = storyRetriever;
+
+            // Todo: move automapper configure.
+            AutoMapperConfiguration.Configure();
         }
 
         #endregion
@@ -54,7 +56,7 @@ namespace MakingChoises.BusinessLogic
         /// <summary>The get next problem.</summary>
         /// <param name="storyName">The story name.</param>
         /// <param name="options">The options.</param>
-        /// <returns>The <see cref="Problem"/>.</returns>
+        /// <returns>The <see cref="ReadModel.Problem"/>.</returns>
         /// <exception cref="ArgumentNullException">Thrown when an argument is null.</exception>
         /// <exception cref="BusinessValidationException">Thrown when arguments do not pass validation.</exception>
         /// <exception cref="ArgumentException">Thrown when the story doesn't exist.</exception>
@@ -72,14 +74,14 @@ namespace MakingChoises.BusinessLogic
 
             // Check basic options validity.
             var optionsValidator = new OptionsValidator();
-            var optionsValidationResults = optionsValidator.Validate(options);
+            ValidationResults optionsValidationResults = optionsValidator.Validate(options);
             if (!optionsValidationResults.IsValid)
             {
                 throw new BusinessValidationException(optionsValidationResults);
             }
 
             // Get the story.
-            var story = this.storyRetriever.GetStoryByName(storyName);
+            Model.Story story = this.storyRetriever.GetStoryByName(storyName);
 
             if (story == null)
             {
@@ -87,20 +89,20 @@ namespace MakingChoises.BusinessLogic
             }
 
             var optionsStoryValidator = new OptionsStoryValidator(story);
-            var optionsStoryvalidationResults = optionsStoryValidator.Validate(options);
+            ValidationResults optionsStoryvalidationResults = optionsStoryValidator.Validate(options);
             if (!optionsStoryvalidationResults.IsValid)
             {
                 throw new BusinessValidationException(optionsStoryvalidationResults);
             }
 
-            var firstProblem = story.Steps.First().Problems.First();
-            var problem = this.GetProblem(firstProblem, options, 0);
+            Model.Problem firstProblem = story.Steps.First(step => step.Number == 1).Problems.First();
+            Problem problem = this.GetProblem(firstProblem, options, 0);
             return problem;
         }
 
         /// <summary>The get story.</summary>
         /// <param name="storyName">The story name.</param>
-        /// <returns>The <see cref="Story"/>.</returns>
+        /// <returns>The <see cref="ReadModel.Story"/>.</returns>
         public Story GetStory(string storyName)
         {
             if (string.IsNullOrWhiteSpace(storyName))
@@ -109,7 +111,7 @@ namespace MakingChoises.BusinessLogic
             }
 
             // Get the story.
-            var storyModel = this.storyRetriever.GetStoryByName(storyName);
+            Model.Story storyModel = this.storyRetriever.GetStoryByName(storyName);
 
             if (storyModel == null)
             {
@@ -131,12 +133,12 @@ namespace MakingChoises.BusinessLogic
         /// <returns>The <see cref="Problem"/>.</returns>
         private Problem GetProblem(Model.Problem currentProblem, IList<int> options, int currentOption)
         {
-            var option = currentProblem.Options.First(opt => opt.Number == options[currentOption]);
+            Option option = currentProblem.Options.First(opt => opt.Number == options[currentOption]);
 
             // Todo: Check for conditions here.
-            var route = option.Routes.First();
+            Route route = option.Routes.First();
 
-            var nextProblem = route.NextProblem;
+            Model.Problem nextProblem = route.NextProblem;
             currentOption = currentOption + 1;
             if (currentOption >= options.Count)
             {

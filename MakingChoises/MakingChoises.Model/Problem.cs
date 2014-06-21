@@ -15,10 +15,20 @@ namespace MakingChoises.Model
     /// </summary>
     public class Problem
     {
+        #region Constructors and Destructors
+
+        /// <summary>Initializes a new instance of the <see cref="Problem" /> class.</summary>
+        public Problem()
+        {
+            this.Options = new List<Option>();
+        }
+
+        #endregion
+
         #region Public Properties
 
         /// <summary>
-        /// Gets or sets the id.
+        ///     Gets or sets the id.
         /// </summary>
         public int Id { get; set; }
 

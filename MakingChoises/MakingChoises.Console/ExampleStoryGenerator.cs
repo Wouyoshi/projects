@@ -19,7 +19,13 @@ namespace MakingChoises.Console
         /// <returns>The <see cref="Story"/>.</returns>
         public static Story MakeExampleStory()
         {
-            return new Story { Steps = MakeExampleSteps() };
+            var story = new Story { Name = "Demo" };
+            var steps = MakeExampleSteps();
+            foreach (var step in steps)
+            {
+                story.Steps.Add(step);
+            }
+            return story;
         }
 
         #endregion
@@ -31,16 +37,22 @@ namespace MakingChoises.Console
         /// <returns>The <see cref="Step"/>.</returns>
         private static Step MakeExampleStep1(Step nextStep)
         {
-            return new Step
+            var step = new Step
                        {
                            Number = 1, 
                            NextStep = nextStep, 
-                           Problems =
-                               MakeExampleStep1Problems(
-                                   nextStep.Problems[0], 
-                                   nextStep.Problems[1], 
-                                   nextStep.NextStep.Problems[1])
                        };
+
+
+            var problems = MakeExampleStep1Problems(
+                nextStep.Problems[0],
+                nextStep.Problems[1],
+                nextStep.NextStep.Problems[1]);
+            foreach (var problem in problems)
+            {
+                step.Problems.Add(problem);
+            }
+            return step;
         }
 
         /// <summary>The make example step 1 problem 1.</summary>
@@ -72,7 +84,7 @@ namespace MakingChoises.Console
         /// <returns>The <see cref="Option"/>.</returns>
         private static Option MakeExampleStep1Problem1Option1(Problem nextProblem)
         {
-            return new Option { Routes = MakeExampleStep1Problem1Option1Routes(nextProblem), Text = "Grab the knife." };
+            return new Option { Number = 1, Routes = MakeExampleStep1Problem1Option1Routes(nextProblem), Text = "Grab the knife." };
         }
 
         /// <summary>The make example step 1 problem 1 option 1 route 1.</summary>
@@ -80,7 +92,7 @@ namespace MakingChoises.Console
         /// <returns>The <see cref="Route"/>.</returns>
         private static Route MakeExampleStep1Problem1Option1Route1(Problem nextProblem)
         {
-            return new Route { Conditions = new List<Condition>(), NextProblem = nextProblem };
+            return new Route { NextProblem = nextProblem };
         }
 
         /// <summary>The make example step 1 problem 1 option 1 routes.</summary>
@@ -98,6 +110,7 @@ namespace MakingChoises.Console
         {
             return new Option
                        {
+                           Number = 2,
                            Routes = MakeExampleStep1Problem1Option2Routes(nextProblem), 
                            Text = "Hide behind the crates."
                        };
@@ -108,7 +121,7 @@ namespace MakingChoises.Console
         /// <returns>The <see cref="Route"/>.</returns>
         private static Route MakeExampleStep1Problem1Option2Route1(Problem nextProblem)
         {
-            return new Route { Conditions = new List<Condition>(), NextProblem = nextProblem };
+            return new Route { NextProblem = nextProblem };
         }
 
         /// <summary>The make example step 1 problem 1 option 2 routes.</summary>
@@ -124,7 +137,12 @@ namespace MakingChoises.Console
         /// <returns>The <see cref="Option"/>.</returns>
         private static Option MakeExampleStep1Problem1Option3(Problem nextProblem)
         {
-            return new Option { Routes = MakeExampleStep1Problem1Option3Routes(nextProblem), Text = "Call for help." };
+            return new Option
+            {
+                Number = 3,
+                Routes = MakeExampleStep1Problem1Option3Routes(nextProblem),
+                Text = "Call for help."
+            };
         }
 
         /// <summary>The make example step 1 problem 1 option 3 route 1.</summary>
@@ -132,7 +150,7 @@ namespace MakingChoises.Console
         /// <returns>The <see cref="Route"/>.</returns>
         private static Route MakeExampleStep1Problem1Option3Route1(Problem nextProblem)
         {
-            return new Route { Conditions = new List<Condition>(), NextProblem = nextProblem };
+            return new Route { NextProblem = nextProblem };
         }
 
         /// <summary>The make example step 1 problem 1 option 3 routes.</summary>
@@ -178,12 +196,20 @@ namespace MakingChoises.Console
         /// <returns>The <see cref="Step"/>.</returns>
         private static Step MakeExampleStep2(Step nextStep)
         {
-            return new Step
+            var step = new Step
                        {
                            Number = 2, 
-                           Problems = MakeExampleStep2Problems(nextStep.Problems[0], nextStep.Problems[1]),
                            NextStep = nextStep
                        };
+            var problems = MakeExampleStep2Problems(nextStep.Problems[0], nextStep.Problems[1]);
+
+            foreach (var problem in problems)
+            {
+                step.Problems.Add(problem);
+            }
+
+            return step;
+
         }
 
         /// <summary>The make example step 2 problem 1.</summary>
@@ -209,7 +235,12 @@ namespace MakingChoises.Console
         /// <returns>The <see cref="Option"/>.</returns>
         private static Option MakeExampleStep2Problem1Option1(Problem nextProblem)
         {
-            return new Option { Routes = MakeExampleStep2Problem1Option1Routes(nextProblem), Text = "Stab the man." };
+            return new Option
+            {
+                Number = 1,
+                Routes = MakeExampleStep2Problem1Option1Routes(nextProblem),
+                Text = "Stab the man."
+            };
         }
 
         /// <summary>The make example step 2 problem 1 option 1 route 1.</summary>
@@ -217,7 +248,7 @@ namespace MakingChoises.Console
         /// <returns>The <see cref="Route"/>.</returns>
         private static Route MakeExampleStep2Problem1Option1Route1(Problem nextProblem)
         {
-            return new Route { Conditions = new List<Condition>(), NextProblem = nextProblem };
+            return new Route { NextProblem = nextProblem };
         }
 
         /// <summary>The make example step 2 problem 1 option 1 routes.</summary>
@@ -233,7 +264,12 @@ namespace MakingChoises.Console
         /// <returns>The <see cref="Option"/>.</returns>
         private static Option MakeExampleStep2Problem1Option2(Problem nextProblem)
         {
-            return new Option { Routes = MakeExampleStep2Problem1Option2Routes(nextProblem), Text = "Call for help." };
+            return new Option
+            {
+                Number = 2,
+                Routes = MakeExampleStep2Problem1Option2Routes(nextProblem),
+                Text = "Call for help."
+            };
         }
 
         /// <summary>The make example step 2 problem 1 option 2 route 1.</summary>
@@ -241,7 +277,7 @@ namespace MakingChoises.Console
         /// <returns>The <see cref="Route"/>.</returns>
         private static Route MakeExampleStep2Problem1Option2Route1(Problem nextProblem)
         {
-            return new Route { Conditions = new List<Condition>(), NextProblem = nextProblem };
+            return new Route { NextProblem = nextProblem };
         }
 
         /// <summary>The make example step 2 problem 1 option 2 routes.</summary>
@@ -289,7 +325,8 @@ namespace MakingChoises.Console
         {
             return new Option
                        {
-                           Routes = MakeExampleStep2Problem2Option1Routes(nextProblem), 
+                           Number = 1,
+                           Routes = MakeExampleStep2Problem2Option1Routes(nextProblem),
                            Text = "Throw the knife at the man."
                        };
         }
@@ -299,7 +336,7 @@ namespace MakingChoises.Console
         /// <returns>The <see cref="Route"/>.</returns>
         private static Route MakeExampleStep2Problem2Option1Route1(Problem nextProblem)
         {
-            return new Route { Conditions = new List<Condition>(), NextProblem = nextProblem };
+            return new Route { NextProblem = nextProblem };
         }
 
         /// <summary>The make example step 2 problem 2 option 1 routes.</summary>
@@ -315,7 +352,12 @@ namespace MakingChoises.Console
         /// <returns>The <see cref="Option"/>.</returns>
         private static Option MakeExampleStep2Problem2Option2(Problem nextProblem)
         {
-            return new Option { Routes = MakeExampleStep2Problem2Option2Routes(nextProblem), Text = "Call for help." };
+            return new Option
+            {
+                Number = 2,
+                Routes = MakeExampleStep2Problem2Option2Routes(nextProblem),
+                Text = "Call for help."
+            };
         }
 
         /// <summary>The make example step 2 problem 2 option 2 route 1.</summary>
@@ -323,7 +365,7 @@ namespace MakingChoises.Console
         /// <returns>The <see cref="Route"/>.</returns>
         private static Route MakeExampleStep2Problem2Option2Route1(Problem nextProblem)
         {
-            return new Route { Conditions = new List<Condition>(), NextProblem = nextProblem };
+            return new Route { NextProblem = nextProblem };
         }
 
         /// <summary>The make example step 2 problem 2 option 2 routes.</summary>
@@ -363,7 +405,13 @@ namespace MakingChoises.Console
         /// <returns>The <see cref="Step"/>.</returns>
         private static Step MakeExampleStep3()
         {
-            return new Step { Number = 3, Problems = MakeExampleStep3Problems() };
+            var step = new Step { Number = 3 };
+            var problems = MakeExampleStep3Problems();
+            foreach (var problem in problems)
+            {
+                step.Problems.Add(problem);
+            }
+            return step;
         }
 
         /// <summary>The make example step 3 problem 1.</summary>

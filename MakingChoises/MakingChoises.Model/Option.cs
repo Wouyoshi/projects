@@ -9,12 +9,23 @@
 namespace MakingChoises.Model
 {
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
 
     /// <summary>
     ///     The option.
     /// </summary>
     public class Option
     {
+        #region Constructors and Destructors
+
+        /// <summary>Initializes a new instance of the <see cref="Option"/> class.</summary>
+        public Option()
+        {
+            this.Routes = new List<Route>();
+        }
+
+        #endregion
+
         #region Public Properties
 
         /// <summary>
@@ -25,6 +36,7 @@ namespace MakingChoises.Model
         /// <summary>
         ///     Gets or sets the number.
         /// </summary>
+        [Required]
         public int Number { get; set; }
 
         /// <summary>
