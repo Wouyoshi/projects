@@ -23,7 +23,7 @@ namespace MakingChoises.BusinessLogic
     using Story = MakingChoises.ReadModel.Story;
 
     /// <summary>The story manager.</summary>
-    public class StoryManager
+    public class StoryManager : IStoryManager
     {
         #region Fields
 
@@ -44,9 +44,6 @@ namespace MakingChoises.BusinessLogic
             }
 
             this.storyRetriever = storyRetriever;
-
-            // Todo: move automapper configure.
-            AutoMapperConfiguration.Configure();
         }
 
         #endregion

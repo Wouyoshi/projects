@@ -19,7 +19,7 @@ namespace MakingChoises.DataAccess
 
         /// <summary>Initializes a new instance of the <see cref="DatabaseContext" /> class.</summary>
         public DatabaseContext()
-            : base("Connection")
+            : base("DefaultConnection")
         {
         }
 

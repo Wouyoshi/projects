@@ -33,9 +33,9 @@ namespace MakingChoises.Console
             var story = ExampleStoryGenerator.MakeExampleStory();
             dbContext.Stories.Add(story);
             dbContext.SaveChanges();
-            RunStory("Demo");
-            dbContext.Stories.Remove(story);
-            dbContext.SaveChanges();
+            //RunStory("Demo");
+            //dbContext.Stories.Remove(story);
+            //dbContext.SaveChanges();
             Console.ReadKey();
         }
 

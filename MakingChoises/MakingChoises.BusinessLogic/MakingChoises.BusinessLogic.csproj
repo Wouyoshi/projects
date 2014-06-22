@@ -54,6 +54,7 @@
   <ItemGroup>
     <Compile Include="AutoMapperConfiguration.cs" />
     <Compile Include="Exceptions\BusinessValidationException.cs" />
+    <Compile Include="IStoryManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StoryManager.cs" />
     <Compile Include="Validation\ConditionValidator.cs" />

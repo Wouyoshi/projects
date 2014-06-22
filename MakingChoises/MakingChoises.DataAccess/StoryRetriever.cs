@@ -44,8 +44,8 @@ namespace MakingChoises.DataAccess
                 throw new ArgumentNullException("storyName");
             }
 
-            var stories = this.databaseContext.Stories.Where(story => story.Name == storyName);
-            return stories.FirstOrDefault();
+            var story = this.databaseContext.Stories.FirstOrDefault(st => st.Name == storyName);
+            return story;
         }
 
         #endregion
