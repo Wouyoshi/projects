@@ -191,6 +191,20 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
+    <Compile Include="Areas\Stories\ApiDescriptionExtensions.cs" />
+    <Compile Include="Areas\Stories\App_Start\HelpPageConfig.cs" />
+    <Compile Include="Areas\Stories\Controllers\StoryController.cs" />
+    <Compile Include="Areas\Stories\HelpPageAreaRegistration.cs" />
+    <Compile Include="Areas\Stories\HelpPageConfigurationExtensions.cs" />
+    <Compile Include="Areas\Stories\Models\HelpPageApiModel.cs" />
+    <Compile Include="Areas\Stories\SampleGeneration\HelpPageSampleGenerator.cs" />
+    <Compile Include="Areas\Stories\SampleGeneration\HelpPageSampleKey.cs" />
+    <Compile Include="Areas\Stories\SampleGeneration\ImageSample.cs" />
+    <Compile Include="Areas\Stories\SampleGeneration\InvalidSample.cs" />
+    <Compile Include="Areas\Stories\SampleGeneration\ObjectGenerator.cs" />
+    <Compile Include="Areas\Stories\SampleGeneration\SampleDirection.cs" />
+    <Compile Include="Areas\Stories\SampleGeneration\TextSample.cs" />
+    <Compile Include="Areas\Stories\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\StoryReadController.cs" />
@@ -207,6 +221,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\HelpPage\HelpPage.css" />
+    <Content Include="Areas\Stories\HelpPage.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="favicon.ico" />
@@ -225,6 +240,18 @@
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\HelpPageApiModel.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\ApiGroup.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\Api.cshtml" />
+    <Content Include="Areas\Stories\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Stories\Views\Story\Api.cshtml" />
+    <Content Include="Areas\Stories\Views\Story\DisplayTemplates\ApiGroup.cshtml" />
+    <Content Include="Areas\Stories\Views\Story\DisplayTemplates\HelpPageApiModel.cshtml" />
+    <Content Include="Areas\Stories\Views\Story\DisplayTemplates\ImageSample.cshtml" />
+    <Content Include="Areas\Stories\Views\Story\DisplayTemplates\InvalidSample.cshtml" />
+    <Content Include="Areas\Stories\Views\Story\DisplayTemplates\Parameters.cshtml" />
+    <Content Include="Areas\Stories\Views\Story\DisplayTemplates\Samples.cshtml" />
+    <Content Include="Areas\Stories\Views\Story\DisplayTemplates\TextSample.cshtml" />
+    <Content Include="Areas\Stories\Views\Story\Index.cshtml" />
+    <Content Include="Areas\Stories\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\Stories\Views\Web.config" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
