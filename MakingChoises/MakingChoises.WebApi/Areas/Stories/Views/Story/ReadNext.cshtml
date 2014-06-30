@@ -1,0 +1,19 @@
+﻿@model MakingChoises.WebApi.Areas.Stories.Models.StoryModel
+@{
+    ViewBag.Title = Model == null ? string.Empty : Model.Name;
+}
+
+<h2>@ViewBag.Title</h2>
+
+@{
+    if (Model != null)
+    {
+        @Html.DisplayFor(m => m.Text)
+        foreach (var option in Model.Options)
+        {
+            <br/>
+            @Html.ActionLink(option.Value, "ReadNext", new { id = Model.Name, options = string.Format("{0},{1}", Model.PreviousOptions, option.Key) })
+        }
+    }
+
+}

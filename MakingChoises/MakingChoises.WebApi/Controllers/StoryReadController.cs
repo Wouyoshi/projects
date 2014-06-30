@@ -6,6 +6,9 @@
 namespace MakingChoises.WebApi.Controllers
 {
     using System;
+    using System.Collections.Generic;
+    using System.Globalization;
+    using System.Linq;
     using System.Web.Http;
 
     using MakingChoises.BusinessLogic;
@@ -41,19 +44,32 @@ namespace MakingChoises.WebApi.Controllers
         /// <returns>The <see cref="Problem"/>.</returns>
         /// <exception cref="ArgumentNullException">Thrown when storyName is null or options is null.</exception>
         [Route("{storyName}/{options}")]
-        public Problem GetNextProblem(string storyName, [FromUri] int[] options)
+        public Problem GetNextProblem(string storyName, string options)
         {
-            if (storyName == null)
+            if (string.IsNullOrWhiteSpace(storyName))
             {
                 throw new ArgumentNullException("storyName");
             }
 
-            if (options == null)
+            if (string.IsNullOrWhiteSpace(options))
             {
                 throw new ArgumentNullException("options");
             }
 
-            Problem problem = this.storyManager.GetNextProblem(storyName, options);
+            var optionArray = options.Split(',');
+            var optionList = new List<int>();
+            foreach (var option in optionArray)
+            {
+                int temp;
+                if (!int.TryParse(option, NumberStyles.Integer, CultureInfo.InvariantCulture, out temp))
+                {
+                    throw new ArgumentException("option was not an integer.");
+                }
+                
+                optionList.Add(temp);
+            }
+
+            Problem problem = this.storyManager.GetNextProblem(storyName, optionList);
             return problem;
         }
 

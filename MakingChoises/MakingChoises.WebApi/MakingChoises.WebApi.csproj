@@ -197,6 +197,7 @@
     <Compile Include="Areas\Stories\HelpPageAreaRegistration.cs" />
     <Compile Include="Areas\Stories\HelpPageConfigurationExtensions.cs" />
     <Compile Include="Areas\Stories\Models\HelpPageApiModel.cs" />
+    <Compile Include="Areas\Stories\Models\StoryModel.cs" />
     <Compile Include="Areas\Stories\SampleGeneration\HelpPageSampleGenerator.cs" />
     <Compile Include="Areas\Stories\SampleGeneration\HelpPageSampleKey.cs" />
     <Compile Include="Areas\Stories\SampleGeneration\ImageSample.cs" />
@@ -252,6 +253,8 @@
     <Content Include="Areas\Stories\Views\Story\Index.cshtml" />
     <Content Include="Areas\Stories\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\Stories\Views\Web.config" />
+    <Content Include="Areas\Stories\Views\Story\Read.cshtml" />
+    <Content Include="Areas\Stories\Views\Story\ReadNext.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
