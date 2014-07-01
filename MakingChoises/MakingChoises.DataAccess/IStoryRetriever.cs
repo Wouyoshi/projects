@@ -6,6 +6,8 @@
 
 namespace MakingChoises.DataAccess
 {
+    using System.Collections.Generic;
+
     using MakingChoises.Model;
 
     /// <summary>The StoryRetriever interface.</summary>
@@ -17,6 +19,10 @@ namespace MakingChoises.DataAccess
         /// <param name="storyName">The story name.</param>
         /// <returns>The <see cref="Story"/>.</returns>
         Story GetStoryByName(string storyName);
+
+        /// <summary>The get stories.</summary>
+        /// <returns>The <see cref="IEnumerable{string}"/>.</returns>
+        IEnumerable<string> GetStories();
 
         #endregion
     }

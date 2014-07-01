@@ -30,8 +30,24 @@ namespace MakingChoises.WebApi.Areas.Stories.Controllers
 
         public ActionResult Index()
         {
-            ViewBag.DocumentationProvider = Configuration.Services.GetDocumentationProvider();
-            return View(Configuration.Services.GetApiExplorer().ApiDescriptions);
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri("http://localhost:50180/");
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+                // New code:
+                var task = client.GetAsync("api/story/getall");
+                task.Wait();
+                if (task.Result.IsSuccessStatusCode)
+                {
+                    var stories = task.Result.Content.ReadAsAsync<IEnumerable<string>>();
+                    stories.Wait();
+                    var result = stories.Result;
+                    return View(result);
+                }
+            }
+            return View("Error");
         }
 
         public ActionResult Api(string apiId)

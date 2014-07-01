@@ -119,6 +119,13 @@ namespace MakingChoises.BusinessLogic
             return story;
         }
 
+        /// <summary>The get story names.</summary>
+        /// <returns>The <see cref="IEnumerable{string}"/>.</returns>
+        public IEnumerable<string> GetStoryNames()
+        {
+            return this.storyRetriever.GetStories();
+        }
+
         #endregion
 
         #region Methods

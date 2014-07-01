@@ -3,10 +3,10 @@
 //   W. Schutten
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace MakingChoises.DataAccess
 {
     using System;
+    using System.Collections.Generic;
     using System.Linq;
 
     using MakingChoises.Model;
@@ -23,7 +23,7 @@ namespace MakingChoises.DataAccess
 
         #region Constructors and Destructors
 
-        /// <summary>Initializes a new instance of the <see cref="StoryRetriever"/> class.</summary>
+        /// <summary>Initializes a new instance of the <see cref="StoryRetriever" /> class.</summary>
         public StoryRetriever()
         {
             this.databaseContext = new DatabaseContext();
@@ -31,7 +31,15 @@ namespace MakingChoises.DataAccess
 
         #endregion
 
-        #region Methods
+        #region Public Methods and Operators
+
+        /// <summary>The get stories.</summary>
+        /// <returns>The <see cref="IEnumerable{string}"/>.</returns>
+        public IEnumerable<string> GetStories()
+        {
+            IQueryable<string> stories = from story in this.databaseContext.Stories select story.Name;
+            return stories;
+        }
 
         /// <summary>The get story by name.</summary>
         /// <param name="storyName">The story name.</param>
@@ -44,7 +52,7 @@ namespace MakingChoises.DataAccess
                 throw new ArgumentNullException("storyName");
             }
 
-            var story = this.databaseContext.Stories.FirstOrDefault(st => st.Name == storyName);
+            Story story = this.databaseContext.Stories.FirstOrDefault(st => st.Name == storyName);
             return story;
         }
 

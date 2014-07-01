@@ -26,6 +26,10 @@ namespace MakingChoises.BusinessLogic
         /// <returns>The <see cref="Story"/>.</returns>
         Story GetStory(string storyName);
 
+        /// <summary>The get story names.</summary>
+        /// <returns>The <see cref="IEnumerable{string}"/>.</returns>
+        IEnumerable<string> GetStoryNames();
+
         #endregion
     }
 }

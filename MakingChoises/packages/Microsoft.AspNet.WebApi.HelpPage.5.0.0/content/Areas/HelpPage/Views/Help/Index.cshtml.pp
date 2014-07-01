@@ -2,11 +2,14 @@
 @using System.Web.Http.Controllers
 @using System.Web.Http.Description
 @using System.Collections.ObjectModel
-@using MakingChoises.WebApi.Areas.Stories.Models
-@model IEnumerable<string>
+@using $rootnamespace$.Areas.HelpPage.Models
+@model Collection<ApiDescription>
 
 @{
     ViewBag.Title = "ASP.NET Web API Help Page";
+
+    // Group APIs by controller
+    ILookup<HttpControllerDescriptor, ApiDescription> apiGroups = Model.ToLookup(api => api.ActionDescriptor.ControllerDescriptor);
 }
 
 <header>
@@ -19,16 +22,16 @@
 <div id="body">
     <section class="featured">
         <div class="content-wrapper">
-            <h2>Stories</h2>
+            <h2>Introduction</h2>
             <p>
-                Here's a list of the stories.
+                Provide a general description of your APIs here.
             </p>
         </div>
     </section>
     <section class="content-wrapper main-content clear-fix">
-        @foreach (var storyName in Model)
+        @foreach (var group in apiGroups)
         {
-            <br/> @Html.ActionLink(storyName, "Read", new { id = storyName })
+            @Html.DisplayFor(m => group, "ApiGroup")
         }
     </section>
 </div>

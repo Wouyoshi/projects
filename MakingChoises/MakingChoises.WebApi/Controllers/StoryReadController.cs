@@ -8,7 +8,6 @@ namespace MakingChoises.WebApi.Controllers
     using System;
     using System.Collections.Generic;
     using System.Globalization;
-    using System.Linq;
     using System.Web.Http;
 
     using MakingChoises.BusinessLogic;
@@ -38,6 +37,14 @@ namespace MakingChoises.WebApi.Controllers
 
         #region Public Methods and Operators
 
+        /// <summary>The get all.</summary>
+        /// <returns>The <see cref="IEnumerable{string}"/>.</returns>
+        [Route("GetAll")]
+        public IEnumerable<string> GetAll()
+        {
+            return this.storyManager.GetStoryNames();
+        }
+
         /// <summary>The get next problem.</summary>
         /// <param name="storyName">The story name.</param>
         /// <param name="options">The options.</param>
@@ -56,16 +63,16 @@ namespace MakingChoises.WebApi.Controllers
                 throw new ArgumentNullException("options");
             }
 
-            var optionArray = options.Split(',');
+            string[] optionArray = options.Split(',');
             var optionList = new List<int>();
-            foreach (var option in optionArray)
+            foreach (string option in optionArray)
             {
                 int temp;
                 if (!int.TryParse(option, NumberStyles.Integer, CultureInfo.InvariantCulture, out temp))
                 {
                     throw new ArgumentException("option was not an integer.");
                 }
-                
+
                 optionList.Add(temp);
             }
 
