@@ -5,6 +5,7 @@ using MakingChoises.WebApi.Areas.Stories.Models;
 namespace MakingChoises.WebApi.Areas.Stories.Controllers
 {
     using System.Collections.Generic;
+    using System.Configuration;
     using System.Net.Http;
     using System.Net.Http.Headers;
     using System.Threading.Tasks;
@@ -32,7 +33,7 @@ namespace MakingChoises.WebApi.Areas.Stories.Controllers
         {
             using (var client = new HttpClient())
             {
-                client.BaseAddress = new Uri("http://localhost:50180/");
+                client.BaseAddress = new Uri(ConfigurationManager.AppSettings["WebApiLocation"]);
                 client.DefaultRequestHeaders.Accept.Clear();
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
@@ -76,7 +77,7 @@ namespace MakingChoises.WebApi.Areas.Stories.Controllers
 
                 using (var client = new HttpClient())
                 {
-                    client.BaseAddress = new Uri("http://localhost:50180/");
+                    client.BaseAddress = new Uri(ConfigurationManager.AppSettings["WebApiLocation"]);
                     client.DefaultRequestHeaders.Accept.Clear();
                     client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
@@ -126,7 +127,7 @@ namespace MakingChoises.WebApi.Areas.Stories.Controllers
 
                 using (var client = new HttpClient())
                 {
-                    client.BaseAddress = new Uri("http://localhost:50180/");
+                    client.BaseAddress = new Uri(ConfigurationManager.AppSettings["WebApiLocation"]);
                     client.DefaultRequestHeaders.Accept.Clear();
                     client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
