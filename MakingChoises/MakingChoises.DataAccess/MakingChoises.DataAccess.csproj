@@ -30,6 +30,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AutoMapper">
+      <HintPath>..\packages\AutoMapper.3.2.1\lib\net40\AutoMapper.dll</HintPath>
+    </Reference>
+    <Reference Include="AutoMapper.Net4">
+      <HintPath>..\packages\AutoMapper.3.2.1\lib\net40\AutoMapper.Net4.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\EntityFramework.6.0.0\lib\net45\EntityFramework.dll</HintPath>
@@ -49,9 +55,28 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DatabaseContext.cs" />
-    <Compile Include="IStoryRetriever.cs" />
+    <Compile Include="IStoryReadRepository.cs" />
+    <Compile Include="IStoryRepository.cs" />
+    <Compile Include="Migrations\201406222056543_InitialCreate.cs" />
+    <Compile Include="Migrations\201406222056543_InitialCreate.Designer.cs">
+      <DependentUpon>201406222056543_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201407031953227_GenreAdded.cs" />
+    <Compile Include="Migrations\201407031953227_GenreAdded.Designer.cs">
+      <DependentUpon>201407031953227_GenreAdded.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201407042145573_GenreUpdated.cs" />
+    <Compile Include="Migrations\201407042145573_GenreUpdated.Designer.cs">
+      <DependentUpon>201407042145573_GenreUpdated.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201407042148066_GenreUpdated2.cs" />
+    <Compile Include="Migrations\201407042148066_GenreUpdated2.Designer.cs">
+      <DependentUpon>201407042148066_GenreUpdated2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="StoryRetriever.cs" />
+    <Compile Include="StoryReadRepository.cs" />
+    <Compile Include="StoryRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">
@@ -64,8 +89,27 @@
       <Project>{BDB6E847-D908-4F0B-B662-E8C6A9A43B31}</Project>
       <Name>MakingChoises.Model</Name>
     </ProjectReference>
+    <ProjectReference Include="..\MakingChoises.ReadModel\MakingChoises.ReadModel.csproj">
+      <Project>{8D120FC5-351F-422B-8802-38B3A822BB4F}</Project>
+      <Name>MakingChoises.ReadModel</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201406222056543_InitialCreate.resx">
+      <DependentUpon>201406222056543_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201407031953227_GenreAdded.resx">
+      <DependentUpon>201407031953227_GenreAdded.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201407042145573_GenreUpdated.resx">
+      <DependentUpon>201407042145573_GenreUpdated.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201407042148066_GenreUpdated2.resx">
+      <DependentUpon>201407042148066_GenreUpdated2.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="..\packages\AutoMapper.3.2.1\tools\AutoMapper.targets" Condition="Exists('..\packages\AutoMapper.3.2.1\tools\AutoMapper.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

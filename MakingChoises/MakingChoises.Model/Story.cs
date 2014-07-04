@@ -39,6 +39,10 @@ namespace MakingChoises.Model
         [Required]
         public string Name { get; set; }
 
+        /// <summary>Gets or sets the genre.</summary>
+        [Required]
+        public virtual Genre Genre { get; set; }
+
         /// <summary>
         ///     Gets the steps.
         /// </summary>

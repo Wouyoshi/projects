@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="StoryRetriever.cs" company="Wouyoshi BV">
+// <copyright file="StoryRepository.cs" company="Wouyoshi BV">
 //   W. Schutten
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
@@ -12,7 +12,7 @@ namespace MakingChoises.DataAccess
     using MakingChoises.Model;
 
     /// <summary>The story retriever.</summary>
-    public class StoryRetriever : IStoryRetriever
+    public class StoryRepository : IStoryRepository
     {
         #region Fields
 
@@ -23,8 +23,8 @@ namespace MakingChoises.DataAccess
 
         #region Constructors and Destructors
 
-        /// <summary>Initializes a new instance of the <see cref="StoryRetriever" /> class.</summary>
-        public StoryRetriever()
+        /// <summary>Initializes a new instance of the <see cref="StoryRepository" /> class.</summary>
+        public StoryRepository()
         {
             this.databaseContext = new DatabaseContext();
         }
@@ -32,15 +32,7 @@ namespace MakingChoises.DataAccess
         #endregion
 
         #region Public Methods and Operators
-
-        /// <summary>The get stories.</summary>
-        /// <returns>The <see cref="IEnumerable{string}"/>.</returns>
-        public IEnumerable<string> GetStories()
-        {
-            IQueryable<string> stories = from story in this.databaseContext.Stories select story.Name;
-            return stories;
-        }
-
+        
         /// <summary>The get story by name.</summary>
         /// <param name="storyName">The story name.</param>
         /// <returns>The <see cref="Story"/>.</returns>

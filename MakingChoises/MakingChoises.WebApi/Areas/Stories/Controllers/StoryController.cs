@@ -42,7 +42,7 @@ namespace MakingChoises.WebApi.Areas.Stories.Controllers
                 task.Wait();
                 if (task.Result.IsSuccessStatusCode)
                 {
-                    var stories = task.Result.Content.ReadAsAsync<IEnumerable<string>>();
+                    var stories = task.Result.Content.ReadAsAsync<IEnumerable<StoriesByGenre>>();
                     stories.Wait();
                     var result = stories.Result;
                     return View(result);

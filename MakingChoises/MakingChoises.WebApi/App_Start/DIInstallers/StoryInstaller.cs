@@ -22,7 +22,8 @@ namespace MakingChoises.WebApi.DIInstallers
         /// <param name="store">The store.</param>
         public void Install(IWindsorContainer container, IConfigurationStore store)
         {
-            container.Register(Component.For<IStoryRetriever>().ImplementedBy<StoryRetriever>().LifestyleTransient());
+            container.Register(Component.For<IStoryRepository>().ImplementedBy<StoryRepository>().LifestyleTransient());
+            container.Register(Component.For<IStoryReadRepository>().ImplementedBy<StoryReadRepository>().LifestyleTransient());
             container.Register(Component.For<IStoryManager>().ImplementedBy<StoryManager>().LifestyleTransient());
         }
 

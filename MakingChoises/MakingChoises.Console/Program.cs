@@ -41,7 +41,7 @@ namespace MakingChoises.Console
 
         private static void RunStory(string storyName)
         {
-            var storyManager = new StoryManager(new StoryRetriever());
+            var storyManager = new StoryManager(new StoryReadRepository(), new StoryRepository());
             var story = storyManager.GetStory(storyName);
             Console.WriteLine(story.Name);
             Console.WriteLine();

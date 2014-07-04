@@ -15,6 +15,7 @@ namespace MakingChoises.BusinessLogic
     using MakingChoises.BusinessLogic.Validation;
     using MakingChoises.DataAccess;
     using MakingChoises.Model;
+    using MakingChoises.ReadModel;
 
     using Microsoft.Practices.EnterpriseLibrary.Validation;
 
@@ -27,23 +28,30 @@ namespace MakingChoises.BusinessLogic
     {
         #region Fields
 
-        /// <summary>The story retriever.</summary>
-        private readonly IStoryRetriever storyRetriever;
+        /// <summary>The story repository.</summary>
+        private readonly IStoryReadRepository storyReadRepository;
+        private readonly IStoryRepository storyRepository;
 
         #endregion
 
         #region Constructors and Destructors
 
         /// <summary>Initializes a new instance of the <see cref="StoryManager"/> class.</summary>
-        /// <param name="storyRetriever">The story retriever.</param>
-        public StoryManager(IStoryRetriever storyRetriever)
+        /// <param name="storyReadRepository">The story read repository.</param>
+        /// <param name="storyRepository">The story repository.</param>
+        public StoryManager(IStoryReadRepository storyReadRepository, IStoryRepository storyRepository)
         {
-            if (storyRetriever == null)
+            if (storyReadRepository == null)
             {
-                throw new ArgumentNullException("storyRetriever");
+                throw new ArgumentNullException("storyReadRepository");
+            }
+            if (storyRepository == null)
+            {
+                throw new ArgumentNullException("storyRepository");
             }
 
-            this.storyRetriever = storyRetriever;
+            this.storyReadRepository = storyReadRepository;
+            this.storyRepository = storyRepository;
         }
 
         #endregion
@@ -78,7 +86,7 @@ namespace MakingChoises.BusinessLogic
             }
 
             // Get the story.
-            Model.Story story = this.storyRetriever.GetStoryByName(storyName);
+            Model.Story story = this.storyRepository.GetStoryByName(storyName);
 
             if (story == null)
             {
@@ -108,7 +116,7 @@ namespace MakingChoises.BusinessLogic
             }
 
             // Get the story.
-            Model.Story storyModel = this.storyRetriever.GetStoryByName(storyName);
+            Model.Story storyModel = this.storyRepository.GetStoryByName(storyName);
 
             if (storyModel == null)
             {
@@ -120,10 +128,10 @@ namespace MakingChoises.BusinessLogic
         }
 
         /// <summary>The get story names.</summary>
-        /// <returns>The <see cref="IEnumerable{string}"/>.</returns>
-        public IEnumerable<string> GetStoryNames()
+        /// <returns>The <see cref="IEnumerable{StoriesByGenre}"/>.</returns>
+        public IEnumerable<StoriesByGenre> GetStories()
         {
-            return this.storyRetriever.GetStories();
+            return this.storyReadRepository.GetStories();
         }
 
         #endregion

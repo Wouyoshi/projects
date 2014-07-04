@@ -45,6 +45,9 @@ namespace MakingChoises.DataAccess
         /// <summary>Gets or sets the stories.</summary>
         public DbSet<Story> Stories { get; set; }
 
+        /// <summary>Gets or sets the genres.</summary>
+        public DbSet<Genre> Genres { get; set; }
+
         #endregion
     }
 }

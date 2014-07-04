@@ -38,11 +38,11 @@ namespace MakingChoises.WebApi.Controllers
         #region Public Methods and Operators
 
         /// <summary>The get all.</summary>
-        /// <returns>The <see cref="IEnumerable{string}"/>.</returns>
+        /// <returns>The <see cref="IEnumerable{StoriesByGenre}"/>.</returns>
         [Route("GetAll")]
-        public IEnumerable<string> GetAll()
+        public IEnumerable<StoriesByGenre> GetAll()
         {
-            return this.storyManager.GetStoryNames();
+            return this.storyManager.GetStories();
         }
 
         /// <summary>The get next problem.</summary>

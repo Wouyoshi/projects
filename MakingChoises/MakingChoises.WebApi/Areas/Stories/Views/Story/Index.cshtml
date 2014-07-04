@@ -3,7 +3,9 @@
 @using System.Web.Http.Description
 @using System.Collections.ObjectModel
 @using MakingChoises.WebApi.Areas.Stories.Models
-@model IEnumerable<string>
+@using MakingChoises.ReadModel
+
+@model IEnumerable<StoriesByGenre>
 
 @{
     ViewBag.Title = "ASP.NET Web API Help Page";
@@ -26,9 +28,13 @@
         </div>
     </section>
     <section class="content-wrapper main-content clear-fix">
-        @foreach (var storyName in Model)
+        @foreach (var storiesByGenre in Model)
         {
-            <br/> @Html.ActionLink(storyName, "Read", new { id = storyName })
+            foreach (var storyName in storiesByGenre.Stories)
+            {
+                <br/>
+                @Html.ActionLink(storyName, "Read", new { id = storyName })
+            }
         }
     </section>
 </div>

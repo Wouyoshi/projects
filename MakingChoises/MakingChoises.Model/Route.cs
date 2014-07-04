@@ -2,9 +2,6 @@
 // <copyright file="Route.cs" company="Wouyoshi BV">
 //   W. Schutten
 // </copyright>
-// <summary>
-//   The route.
-// </summary>
 // --------------------------------------------------------------------------------------------------------------------
 namespace MakingChoises.Model
 {
@@ -18,7 +15,7 @@ namespace MakingChoises.Model
     {
         #region Constructors and Destructors
 
-        /// <summary>Initializes a new instance of the <see cref="Route"/> class.</summary>
+        /// <summary>Initializes a new instance of the <see cref="Route" /> class.</summary>
         public Route()
         {
             this.Conditions = new List<Condition>();
@@ -32,6 +29,7 @@ namespace MakingChoises.Model
         ///     Gets the conditions.
         /// </summary>
         public virtual IList<Condition> Conditions { get; private set; }
+
 
         /// <summary>
         ///     Gets or sets the id.
