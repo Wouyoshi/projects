@@ -178,6 +178,7 @@ namespace Qwixx.Models
 
             if (lineNumber.Number != "lock")
             {
+
             }
             // End loop to gather validation statistics
 
