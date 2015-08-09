@@ -1,0 +1,289 @@
+﻿@color-row-1: #A90D1A;
+@color-row-2: #EBAA06;
+@color-row-3: #005B39;
+@color-row-4: #000F4F;
+@color-row-5: #D2D6DF; // Background behind all rows except last
+@color-row-6: #96979C;
+@color-row-number-1: #EDCDD8;
+@color-row-number-2: #E9F4E4;
+@color-row-number-3: #C6E7EC;
+@color-row-number-4: #B5C7EF;
+@color-row-number-5: #E6F3F9;
+@color-row-number-6: #F1FAFF;
+
+@colors-row-numbers: #440210, #9C5408, #063128,#00072A, #788389;
+@color-row-numbers-1: #440210; //Borders of the numbers
+@color-row-numbers-2: #9C5408; //Borders of the numbers
+@color-row-numbers-3: #063128; //Borders of the numbers
+@color-row-numbers-4: #00072A; //Borders of the numbers
+@color-row-numbers-5: #788389; //Borders of the numbers
+
+@color-score: #F2FCFE;
+@color-score-total: #1F2427;
+@card-width: 600px;
+@card-height: 60 * (@card-width /100);
+@row-width: 95 * (@card-width / 100);
+@row-height: 18 * (@card-height / 100);
+@numbers-width: 95 * (@row-width / 100); 
+@numbers-height: 82 * (@row-height / 100); 
+@number-size: 8 * (@numbers-width / 100);
+@number-size-border: 7 * (@number-size / 100);
+@font-size: 80 * (@number-size / 100);
+@number-margin: 1;
+
+.qwixx-card{
+    width:@card-width;
+    height:@card-height;  
+    background-color:@color-row-5;
+}
+
+.qwixx-row {
+    width: @row-width;
+    height: @row-height;
+}
+.qwixx-number-rows{
+    position:relative;
+    left:(@row-width - @numbers-width) / 2;
+    top:(@row-height - @numbers-height) / 2;
+}
+.qwixx-numbers{
+    position:relative;
+    left:(@row-width - @numbers-width) / 2;
+    top:(@row-height - @numbers-height) / 2;
+    border-radius:5px;
+    width:@numbers-width;
+    height: @numbers-height;
+    font-size:0;
+}
+    .qwixx-number-rows .qwixx-row{
+        margin-top:5px;
+    }
+
+qwixx-number, .qwixx-lock {
+    height:@number-size;
+    width:@number-size;
+    display: inline-block;
+    position:relative;
+    left:(@numbers-width - (12 * (@number-size + @number-margin))) / 2;
+    margin-left:1px;
+}
+qwixx-number{
+    border-radius:5px;
+    font-size:@font-size;
+    font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    text-align:center;
+    top: 0 - 10 * (@font-size / 100);
+
+}
+.qwixx-lock {
+    border-radius:50px;
+    top: (@numbers-height - @number-size) / 2;
+}
+.qwixx-row-5{
+    position: relative;
+    top:(@numbers-height - @number-size) / 2;
+}
+.qwixx-row-6{
+    background-color:@color-row-6;
+    width:@card-width;
+    margin-left:0;
+}
+
+.qwixx-number-selected:before, .qwixx-number-selected:after {
+    position: absolute;
+    content: '';
+    background: black;
+    display: block;
+    width: 100%;
+    height: @number-size/5;
+    -webkit-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+    //center the X vertically and horizontally:
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+}
+.qwixx-number-selected:after {
+    -webkit-transform: rotate(45deg);    
+    transform: rotate(45deg);
+}
+.qwixx-scores {
+    font-size:0;
+    position:relative;
+    top: (@row-height - @number-size - (2 * @number-size-border)) / 2;
+}
+.qwixx-scores div{
+    display: inline-block;
+}
+.qwixx-score, .qwixx-score-total{
+    height: 80 * (@number-size /100);
+    background-color:@color-score;
+    border-width:@number-size-border;
+    border-style:solid;
+    border-radius:5px;
+}
+.qwixx-score{
+    width:@number-size;
+}
+.qwixx-score-total{    
+    width: 3 * @number-size;
+}
+.qwixx-plus, .qwixx-minus, .qwixx-equals, .qwixx-score-text, .qwixx-rule-explanation-score{
+    text-align: center;
+    position:relative;
+}
+.qwixx-plus, .qwixx-minus, .qwixx-equals, .qwixx-score-text{
+    bottom:(80 * (@number-size /100) / 4);
+}
+.qwixx-plus, .qwixx-minus, .qwixx-equals{
+    font-size:@font-size;
+}
+.qwixx-score-text, .qwixx-rule-explanation-score{
+    width:@number-size;
+    font-size:@font-size/3;
+}
+qwixx-rules-row{
+    position:relative;
+    top:(@row-height - @numbers-height) / 2;
+}
+qwixx-rule-bubble, qwixx-rule-explanation-bubble{
+    display:inline-block;
+    height:@number-size;
+
+}
+qwixx-rule-bubble{
+    width:@number-size / 2;
+    background-color:@color-row-number-6;
+    border-color:@color-row-numbers-5;
+    border-radius:5px;
+    border-style:solid;
+    border-width:@number-size-border;
+}
+qwixx-rule-explanation-bubble{
+
+}
+
+.qwixx-rule-explanation-amount, .qwixx-rule-explanation-stripe{
+    position:relative;
+    left:((@number-size / 2) + @number-size-border) -  (@number-size / 3);
+}
+.qwixx-rule-explanation-amount{
+    width:@number-size / 3;
+    height:@number-size / 3;
+    background-color:@color-row-number-6;
+    border-color:@color-row-numbers-5;
+    border-radius:5px;
+    border-style:solid;
+    border-width:@number-size-border;
+    margin-top:-(2 * @number-size-border);
+    top:0;
+    font-size:@number-size / 3;
+    text-align:center;
+}
+
+.qwixx-rule-explanation-stripe, .qwixx-rule-stripe{
+    content: ' ';
+    width:@number-size / 2;
+    height:@number-size-border;
+    border-bottom-width:@number-size-border / 2;
+    border-bottom-color:black;
+    border-bottom-style:solid;
+}
+.qwixx-rule-explanation-amount{
+}
+
+// CREATE PROPERTY NAMES
+@background-color: background-color;
+@color: color;
+@border-color: border-color;
+
+/*-------------------  START NUMBER AND LOCK COLORS ------------------*/
+@number-colors:    '@{color-row-number-1}',
+                   '@{color-row-number-2}',
+                   '@{color-row-number-3}',
+                   '@{color-row-number-4}';
+
+@number-property-list: @background-color, @background-color;
+@number-values-list: @number-colors, @number-colors;
+.loop-function(qwixx-row, e('qwixx-number'), @number-property-list, @number-values-list);
+.loop-function(qwixx-row, e('.qwixx-lock'), @number-property-list, @number-values-list);
+/*-------------------  END NUMBER AND LOCK COLORS ------------------*/
+
+/*-------------------  START NUMBERS COLORS ------------------*/
+@numbers-colors:    '@{color-row-numbers-1}',
+                    '@{color-row-numbers-2}',
+                    '@{color-row-numbers-3}',
+                    '@{color-row-numbers-4}';
+
+@numbers-property-list: @background-color, @background-color;
+@numbers-values-list: @numbers-colors, @numbers-colors;
+.loop-function(qwixx-row, e('.qwixx-numbers'), @numbers-property-list, @numbers-values-list);
+/*-------------------  END NUMBERS COLORS ------------------*/
+
+/*-------------------  START ROW COLORS ------------------*/
+// CREATE ROW ARRAYS
+@row-colors:    '@{color-row-1}',
+                '@{color-row-2}',
+                '@{color-row-3}',
+                '@{color-row-4}';
+
+@row-background-colors:     '@{color-row-1}',
+                            '@{color-row-2}',
+                            '@{color-row-3}',
+                            '@{color-row-4}';
+
+
+@row-property-list:@background-color, @color;
+@row-values-list: @row-colors, @row-background-colors;
+
+// LOOP THROUGH THEM
+.loop-function(qwixx-row, e(''),@row-property-list, @row-values-list );
+
+/*------------------- END ROW COLORS ------------------*/
+
+
+/*-------------------  START SCORE COLORS ------------------*/
+// CREATE SCORE ARRAY
+@score-background-colors:   '@{color-row-numbers-1}',
+                            '@{color-row-numbers-2}',
+                            '@{color-row-numbers-3}',
+                            '@{color-row-numbers-4}',
+                            '@{color-row-numbers-5}';
+@score-property-list: @border-color, @border-color;
+@score-background-colors-list: @score-background-colors, @score-background-colors;
+
+// LOOP THROUGH THEM
+.loop-function(qwixx-score, e('') ,@score-property-list, @score-background-colors-list );
+
+/*-------------------  END SCORE COLORS ------------------*/
+
+.loop-function(@class-name, @class-postfix, @property-list, @values-list) {
+
+    // Extract the first value list to see how many classes should be created.
+    @first-values: e(extract(@values-list, 1));
+    @howmany-classes: length(@first-values);
+    @property-length: length(@property-list);
+
+    .loop (@index) when (@index > 0){
+        // CLEAN EACH COLOR NAME
+         
+        .@{class-name}-@{index} @{class-postfix} {
+            
+            .loop-property(@current-index) when (@current-index > 0){
+  
+                @values: e(extract(@values-list, @current-index)); 
+                @property: e(extract(@property-list, @current-index));
+                @value: e(extract(@values, @index));
+                @{property}: @value;
+                
+                .loop-property (@current-index - 1);
+            }
+            .loop-property(@property-length);
+        }
+        
+        .loop (@index - 1);
+    }
+    .loop(@howmany-classes)
+}
