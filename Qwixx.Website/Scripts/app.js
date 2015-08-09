@@ -42,6 +42,19 @@
             $scope.ten = { numberText: "10" };
             $scope.eleven = { numberText: "11" };
             $scope.twelve = { numberText: "12" };
+
+            $scope.checked1 =  { amountText: "1x" , scoreText: "1"};
+            $scope.checked2 =  { amountText: "2x" , scoreText: "3"};
+            $scope.checked3 =  { amountText: "3x" , scoreText: "6"};
+            $scope.checked4 =  { amountText: "4x" , scoreText: "10"};
+            $scope.checked5 =  { amountText: "5x" , scoreText: "15"};
+            $scope.checked6 =  { amountText: "6x" , scoreText: "21"};
+            $scope.checked7 =  { amountText: "7x" , scoreText: "28"};
+            $scope.checked8 =  { amountText: "8x" , scoreText: "36"};
+            $scope.checked9 =  { amountText: "9x" , scoreText: "45"};
+            $scope.checked10 = { amountText: "10x", scoreText: "55"};
+            $scope.checked11 = { amountText: "11x", scoreText: "66"};
+            $scope.checked12 = { amountText: "12x", scoreText: "78"};
         }
     ]);
     app.directive("qwixxNumber", function () {
@@ -76,21 +89,6 @@
         return {
             scope: {
                 rule: "=rule"
-            },
-            controller: function ($scope) {
-                $scope.checked1 = { amountText: "1" };
-                $scope.checked2 = { amountText: "2" };
-                $scope.checked3 = { amountText: "3" };
-                $scope.checked4 = { amountText: "4" };
-                $scope.checked5 = { amountText: "5" };
-                $scope.checked6 = { amountText: "6" };
-                $scope.checked7 = { amountText: "7" };
-                $scope.checked8 = { amountText: "8" };
-                $scope.checked9 = { amountText: "9" };
-                $scope.checked10 = { amountText: "10" };
-                $scope.checked11 = { amountText: "11" };
-                $scope.checked12 = { amountText: "12" };
-                
             },
             restrict: "E",
             templateUrl: "qwixx-rule-bubble.html"
