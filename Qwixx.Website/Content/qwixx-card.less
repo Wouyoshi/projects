@@ -78,6 +78,13 @@ qwixx-number{
 .qwixx-lock {
     border-radius:50px;
     top: (@numbers-height - @number-size) / 2;
+
+}
+.qwixx-lock-img {
+    position: absolute;
+    width: @number-size * 2;
+    left: -(@number-size/2);
+    top: -(@number-size/3);
 }
 .qwixx-row-5{
     position: relative;
@@ -104,10 +111,12 @@ qwixx-number{
     top: 0;
     bottom: 0;
     margin: auto;
+    z-index:1;
 }
 .qwixx-number-selected:after {
     -webkit-transform: rotate(45deg);    
     transform: rotate(45deg);
+    z-index:1;
 }
 .qwixx-scores {
     font-size:0;
@@ -142,8 +151,10 @@ qwixx-number{
 }
 .qwixx-score-text, .qwixx-rule-explanation-score{
     width:@number-size;
-    font-size:@font-size/3;
 }
+.qwixx-score-text, .qwixx-rule-explanation-score, .qwixx-rule-amount, .qwixx-rule-score{
+    font-size:@font-size/3;
+ }
 qwixx-rules-row{
     position:relative;
     top:(@row-height - @numbers-height) / 2;
@@ -151,7 +162,7 @@ qwixx-rules-row{
 qwixx-rule-bubble, qwixx-rule-explanation-bubble{
     display:inline-block;
     height:@number-size;
-
+    position:relative;
 }
 qwixx-rule-bubble{
     width:@number-size / 2;
@@ -191,7 +202,21 @@ qwixx-rule-explanation-bubble{
     border-bottom-color:black;
     border-bottom-style:solid;
 }
-.qwixx-rule-explanation-amount{
+.qwixx-rule-stripe{
+    position:absolute;
+    top: (@number-size/2)-@number-size-border;
+}
+
+.qwixx-rule-amount, .qwixx-rule-score{
+    position:absolute;
+    text-align:center;
+    width:(@number-size/2)-@number-size-border;
+}
+.qwixx-rule-amount {
+    bottom:((@number-size/4)*3)-@number-size-border+;
+}
+.qwixx-rule-score{
+    top:((@number-size/4)*3)-@number-size-border;
 }
 
 // CREATE PROPERTY NAMES

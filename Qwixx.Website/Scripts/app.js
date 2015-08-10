@@ -3,10 +3,10 @@
 
     app.controller("qwixxController", [
         "$scope", function($scope) {
-            $scope.red = { rowClass: "qwixx-row-1" };
-            $scope.yellow = { rowClass: "qwixx-row-2" };
-            $scope.green = { rowClass: "qwixx-row-3" };
-            $scope.blue = { rowClass: "qwixx-row-4" };
+            $scope.red = { rowClass: "qwixx-row-1", imageSrc: "Content/Icons/lock-icon-red.png" };
+            $scope.yellow = { rowClass: "qwixx-row-2", imageSrc: "Content/Icons/lock-icon-yellow.png" };
+            $scope.green = { rowClass: "qwixx-row-3", imageSrc: "Content/Icons/lock-icon-green.png" };
+            $scope.blue = { rowClass: "qwixx-row-4", imageSrc: "Content/Icons/lock-icon-blue.png" };
             $scope.rules = { rowClass: "qwixx-row-5" };
             $scope.score = { rowClass: "qwixx-row-6" };
         }
@@ -64,6 +64,12 @@
             scope: {
                 number: "=number"
             }
+        };
+    });
+    app.directive("qwixxLock", function () {
+        return {
+            restrict: "E",
+            templateUrl: "qwixx-lock.html"
         };
     });
     app.controller("qwixxNumberController", [

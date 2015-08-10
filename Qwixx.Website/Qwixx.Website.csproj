@@ -57,6 +57,13 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\Icons\dice-icon-614x460.png" />
+    <Content Include="Content\Icons\lock-icon-614x460.png" />
+    <Content Include="Content\Icons\lock-icon-blue.png" />
+    <Content Include="Content\Icons\lock-icon-green.png" />
+    <Content Include="Content\Icons\lock-icon-red.png" />
+    <Content Include="Content\Icons\lock-icon-yellow.png" />
+    <Content Include="qwixx-lock.html" />
     <Content Include="qwixx-rule-explanation-bubble.html" />
     <Content Include="qwixx-rule-bubble.html" />
     <Content Include="qwixx-rules-row.html" />
