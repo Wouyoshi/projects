@@ -1,4 +1,5 @@
-﻿(function() {
+﻿(function () {
+    "use strict";
     var app = angular.module("qwixx", []);
 
     app.controller("qwixxController", [
@@ -104,6 +105,12 @@
         return {
             restrict: "E",
             templateUrl: "qwixx-rule-explanation-bubble.html"
+        };
+    });
+    app.directive("qwixxWastedDiceRow", function () {
+        return {
+            restrict: "E",
+            templateUrl: "qwixx-wasted-dice-row.html"
         };
     });
 })();

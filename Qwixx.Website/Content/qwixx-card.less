@@ -86,6 +86,51 @@ qwixx-number{
     left: -(@number-size/2);
     top: -(@number-size/3);
 }
+
+qwixx-wasted-dice-row{
+    display:inline-block;
+    position:relative;
+    left:@number-size/2;
+}
+    .qwixx-wasted-explanation-row{
+
+    }
+.qwixx-wasted-die-img {
+    position: absolute;
+    display:inline-block;
+    width: @number-size * 2;
+    left: -(@number-size/2);
+    top: -(90*(@number-size / 100));
+}
+    .qwixx-wasted-die-img-container:before, .qwixx-wasted-die-img-container:after {
+        position: absolute;
+        content: '';
+        background: @color-row-numbers-2;
+        display: block;
+        width: 40%;
+        height: @number-size/9;
+        -webkit-transform: rotate(-45deg);
+        transform: rotate(-45deg);
+        //center the X vertically and horizontally:
+        left: @number-size/10;
+        top: -@number-size/6;
+        margin: auto;
+        z-index:1;
+    }
+    .qwixx-wasted-die-img-container:after {
+        -webkit-transform: rotate(45deg);    
+        transform: rotate(45deg);
+        z-index:1;
+    }
+
+.qwixx-wasted-points {
+    position: relative;
+    display:inline-block;
+    width: @number-size;
+    left: (@number-size);
+    top: -(@number-size/3);
+}
+
 .qwixx-row-5{
     position: relative;
     top:(@numbers-height - @number-size) / 2;
@@ -159,7 +204,7 @@ qwixx-rules-row{
     position:relative;
     top:(@row-height - @numbers-height) / 2;
 }
-qwixx-rule-bubble, qwixx-rule-explanation-bubble{
+qwixx-rule-bubble, qwixx-rule-explanation-bubble, qwixx-wasted-dice-row{
     display:inline-block;
     height:@number-size;
     position:relative;
@@ -172,15 +217,25 @@ qwixx-rule-bubble{
     border-style:solid;
     border-width:@number-size-border;
 }
-qwixx-rule-explanation-bubble{
-
-}
-
 .qwixx-rule-explanation-amount, .qwixx-rule-explanation-stripe{
     position:relative;
     left:((@number-size / 2) + @number-size-border) -  (@number-size / 3);
 }
 .qwixx-rule-explanation-amount{
+    width:@number-size / 3;
+    height:@number-size / 3;
+    background-color:@color-row-number-6;
+    border-color:@color-row-numbers-5;
+    border-radius:5px;
+    border-style:solid;
+    border-width:@number-size-border;
+    margin-top:-(2 * @number-size-border);
+    top:0;
+    font-size:@number-size / 3;
+    text-align:center;
+}
+.qwixx-wasted{
+    display: inline-block;
     width:@number-size / 3;
     height:@number-size / 3;
     background-color:@color-row-number-6;

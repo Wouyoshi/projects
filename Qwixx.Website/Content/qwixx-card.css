@@ -50,6 +50,45 @@ qwixx-number {
   left: -21.66px;
   top: -14.44px;
 }
+qwixx-wasted-dice-row {
+  display: inline-block;
+  position: relative;
+  left: 21.66px;
+}
+.qwixx-wasted-die-img {
+  position: absolute;
+  display: inline-block;
+  width: 86.64px;
+  left: -21.66px;
+  top: -38.988px;
+}
+.qwixx-wasted-die-img-container:before,
+.qwixx-wasted-die-img-container:after {
+  position: absolute;
+  content: '';
+  background: #9c5408;
+  display: block;
+  width: 40%;
+  height: 4.81333333px;
+  -webkit-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+  left: 4.332px;
+  top: -7.22px;
+  margin: auto;
+  z-index: 1;
+}
+.qwixx-wasted-die-img-container:after {
+  -webkit-transform: rotate(45deg);
+  transform: rotate(45deg);
+  z-index: 1;
+}
+.qwixx-wasted-points {
+  position: relative;
+  display: inline-block;
+  width: 43.32px;
+  left: 43.32px;
+  top: -14.44px;
+}
 .qwixx-row-5 {
   position: relative;
   top: 4.908px;
@@ -137,7 +176,8 @@ qwixx-rules-row {
   top: 5.832px;
 }
 qwixx-rule-bubble,
-qwixx-rule-explanation-bubble {
+qwixx-rule-explanation-bubble,
+qwixx-wasted-dice-row {
   display: inline-block;
   height: 43.32px;
   position: relative;
@@ -156,6 +196,20 @@ qwixx-rule-bubble {
   left: 10.2524px;
 }
 .qwixx-rule-explanation-amount {
+  width: 14.44px;
+  height: 14.44px;
+  background-color: #f1faff;
+  border-color: #788389;
+  border-radius: 5px;
+  border-style: solid;
+  border-width: 3.0324px;
+  margin-top: -6.0648px;
+  top: 0;
+  font-size: 14.44px;
+  text-align: center;
+}
+.qwixx-wasted {
+  display: inline-block;
   width: 14.44px;
   height: 14.44px;
   background-color: #f1faff;
