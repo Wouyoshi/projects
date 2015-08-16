@@ -1,17 +1,33 @@
 ﻿<div class="qwixx-row {{row.rowClass}}" ng-controller="qwixxRowController">
     <div class="qwixx-numbers">
-        <qwixx-number number="two"></qwixx-number>
-        <qwixx-number number="three"></qwixx-number>
-        <qwixx-number number="four"></qwixx-number>
-        <qwixx-number number="five"></qwixx-number>
-        <qwixx-number number="six"></qwixx-number>
-        <qwixx-number number="seven"></qwixx-number>
-        <qwixx-number number="eight"></qwixx-number>
-        <qwixx-number number="nine"></qwixx-number>
-        <qwixx-number number="ten"></qwixx-number>
-        <qwixx-number number="eleven"></qwixx-number>
-        <qwixx-number number="twelve"></qwixx-number>
-        <qwixx-lock></qwixx-lock>
-        
+        <div ng-if="row.order == 'asc'">
+            <qwixx-number number="two"></qwixx-number>
+            <qwixx-number number="three"></qwixx-number>
+            <qwixx-number number="four"></qwixx-number>
+            <qwixx-number number="five"></qwixx-number>
+            <qwixx-number number="six"></qwixx-number>
+            <qwixx-number number="seven"></qwixx-number>
+            <qwixx-number number="eight"></qwixx-number>
+            <qwixx-number number="nine"></qwixx-number>
+            <qwixx-number number="ten"></qwixx-number>
+            <qwixx-number number="eleven"></qwixx-number>
+            <qwixx-number number="twelve"></qwixx-number>
+            <qwixx-lock></qwixx-lock>
+        </div>
+        <div ng-if="row.order == 'desc'">
+            <qwixx-number number="twelve"></qwixx-number>
+            <qwixx-number number="eleven"></qwixx-number>
+            <qwixx-number number="ten"></qwixx-number>
+            <qwixx-number number="nine"></qwixx-number>
+            <qwixx-number number="eight"></qwixx-number>
+            <qwixx-number number="seven"></qwixx-number>
+            <qwixx-number number="six"></qwixx-number>
+            <qwixx-number number="five"></qwixx-number>
+            <qwixx-number number="four"></qwixx-number>
+            <qwixx-number number="three"></qwixx-number>
+            <qwixx-number number="two"></qwixx-number>
+            <qwixx-lock></qwixx-lock>
+        </div>
+
     </div>
 </div>
