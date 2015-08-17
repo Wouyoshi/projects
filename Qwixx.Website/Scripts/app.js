@@ -77,15 +77,23 @@
         "$scope", "scoreService", function($scope, scoreService) {
             $scope.qwixxSelected = false;
             $scope.numberClicked = function() {
-                $scope.qwixxSelected = true;
                 var color = $scope.$parent.$parent.$parent.row.color;
+                var added = false;
                 if (!$scope.$parent.number) {
-                    scoreService.addLock(color);
+                    added = scoreService.addLock(color);
+                    if (!added) {
+                        return;
+                    }
+                    $scope.qwixxSelected = true;
                     return;
                 }
 
                 var number = $scope.$parent.number.numberText;
-                scoreService.addNumber(color, number);
+                added = scoreService.addNumber(color, number);
+                if (!added) {
+                    return;
+                }
+                $scope.qwixxSelected = true;
             };
         }
     ]);
@@ -197,41 +205,48 @@
         }
         scores.addLock = function(color) {
             if (!color) {
-                return;
+                return false;
             }
             var list = scores.getList(color);
             if (list === null || list === undefined) {
-                return;
+                return false;
             }
             if (list.indexOf("lock") >= 0) {
-                return;
+                return false;
             }
             list.push("lock");
             scores.recalculate();
+            return true;
         };
         scores.addNumber = function(color, number) {
             // validate.
             if (!color || !number) {
-                return;
+                return false;
             }
             if (isNaN(number)) {
-                return;
+                return false;
             }
             // make sure it's an int value.
             var intValue = Math.floor(number);
             if (intValue < 2 || number > 12) {
-                return;
+                return false;
             }
             var list = scores.getList(color);
             if (list === null || list === undefined) {
-                return;
+                return false;
             }
             if (list.indexOf(intValue) >= 0) {
-                return;
+                return false;
             }
+            // There should be no lock in the list.
+            if (list.indexOf("lock") >= 0) {
+                return false;
+            }
+            
             // Add the score to the list.
             list.push(intValue);
             scores.recalculate();
+            return true;
         };
         scores.recalculate = function() {
             var calc = function(length) {
