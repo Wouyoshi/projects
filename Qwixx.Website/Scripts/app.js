@@ -277,6 +277,22 @@
             if (list.indexOf("lock") >= 0) {
                 return false;
             }
+            
+            // If there's already a higher number (in case of red and yellow) 
+            // or lower number (in case of green and blue). Don't add.
+            for (var i = 0; i < list.length; i++) {
+                var listNumber = Number(list[i]);
+                if (color === "red" || color === "yellow") {
+                    if (listNumber > number) {
+                        return false;
+                    }
+                } else {
+                    if (listNumber < number) {
+                        return false;
+                    }
+                }
+            }
+
             // Add the score to the list.
             list.push(intValue);
 
