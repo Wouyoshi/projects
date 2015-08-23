@@ -12,6 +12,13 @@
             $scope.score = { rowClass: "qwixx-row-6", scoreService: scoreService };
         }
     ]);
+
+    app.directive("qwixxCard", function () {
+        return {
+            restrict: "E",
+            templateUrl: "qwixx-card.html"
+        };
+    });
     app.directive("qwixxNumberRow", function() {
         return {
             restrict: "E",
@@ -31,18 +38,18 @@
         };
     });
     app.controller("qwixxRowController", [
-        "$scope", function($scope) {
-            $scope.two = { numberText: "2" };
-            $scope.three = { numberText: "3" };
-            $scope.four = { numberText: "4" };
-            $scope.five = { numberText: "5" };
-            $scope.six = { numberText: "6" };
-            $scope.seven = { numberText: "7" };
-            $scope.eight = { numberText: "8" };
-            $scope.nine = { numberText: "9" };
-            $scope.ten = { numberText: "10" };
-            $scope.eleven = { numberText: "11" };
-            $scope.twelve = { numberText: "12" };
+        "$scope", "scoreService", function ($scope, scoreService) {
+            $scope.two = { numberText: "2", scoreService: scoreService, color: $scope.$parent.row.color };
+            $scope.three = { numberText: "3", scoreService: scoreService, color: $scope.$parent.row.color };
+            $scope.four = { numberText: "4", scoreService: scoreService, color: $scope.$parent.row.color };
+            $scope.five = { numberText: "5", scoreService: scoreService, color: $scope.$parent.row.color };
+            $scope.six = { numberText: "6", scoreService: scoreService, color: $scope.$parent.row.color };
+            $scope.seven = { numberText: "7", scoreService: scoreService, color: $scope.$parent.row.color };
+            $scope.eight = { numberText: "8", scoreService: scoreService, color: $scope.$parent.row.color };
+            $scope.nine = { numberText: "9", scoreService: scoreService, color: $scope.$parent.row.color };
+            $scope.ten = { numberText: "10", scoreService: scoreService, color: $scope.$parent.row.color };
+            $scope.eleven = { numberText: "11", scoreService: scoreService, color: $scope.$parent.row.color };
+            $scope.twelve = { numberText: "12", scoreService: scoreService, color: $scope.$parent.row.color };
 
             $scope.checked1 = { amountText: "1x", scoreText: "1" };
             $scope.checked2 = { amountText: "2x", scoreText: "3" };
@@ -93,7 +100,7 @@
                 if (!added) {
                     return;
                 }
-                $scope.qwixxSelected = true;
+                //$scope.qwixxSelected = true;
             };
         }
     ]);
@@ -101,23 +108,11 @@
         "$scope", "scoreService", function ($scope, scoreService) {
             var wastedClicked = function () {
                 scoreService.addWasted();
-                if (scoreService.wasted.amount >= 1) {
-                    $scope.waste1.qwixxSelected = true;
-                }
-                if (scoreService.wasted.amount >= 2) {
-                    $scope.waste2.qwixxSelected = true;
-                }
-                if (scoreService.wasted.amount >= 3) {
-                    $scope.waste3.qwixxSelected = true;
-                }
-                if (scoreService.wasted.amount >= 4) {
-                    $scope.waste4.qwixxSelected = true;
-                }
             };
-            $scope.waste1 = { qwixxSelected: false, wastedClicked: wastedClicked };
-            $scope.waste2 = { qwixxSelected: false, wastedClicked: wastedClicked };
-            $scope.waste3 = { qwixxSelected: false, wastedClicked: wastedClicked };
-            $scope.waste4 = { qwixxSelected: false, wastedClicked: wastedClicked };
+            $scope.waste1 = { amount: 1, qwixxSelected: false, wastedClicked: wastedClicked, scoreService: scoreService };
+            $scope.waste2 = { amount: 2, qwixxSelected: false, wastedClicked: wastedClicked, scoreService: scoreService };
+            $scope.waste3 = { amount: 3, qwixxSelected: false, wastedClicked: wastedClicked, scoreService: scoreService };
+            $scope.waste4 = { amount: 4, qwixxSelected: false, wastedClicked: wastedClicked, scoreService: scoreService };
         }
     ]);
 
@@ -198,7 +193,23 @@
             default:
                 return false;
             }
-        }
+        };
+        scores.isInList = function(color, number) {
+            /// <summary>
+            /// Checks if the number is in the list.
+            /// </summary>
+            /// <param name="color"></param>
+            /// <param name="number"></param>
+            /// <returns type=""></returns>
+            if (!color) {
+                return false;
+            }
+            var list = scores.getList(color);
+            if (!list) {
+                return false;
+            }
+            return list.indexOf(Number(number)) >= 0;
+        };
 
         scores.getList = function(color) {
             if (!color) {
@@ -217,14 +228,14 @@
                 return null;
             }
         };
-        scores.addWasted = function () {
+        scores.addWasted = function() {
             if (scores.wasted.amount >= 4) {
                 return;
             }
             scores.wasted.amount++;
             scores.recalculate();
 
-        }
+        };
         scores.addLock = function(color) {
             if (!color) {
                 return false;
