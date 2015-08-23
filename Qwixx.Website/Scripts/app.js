@@ -4,10 +4,10 @@
 
     app.controller("qwixxController", [
         "$scope", "scoreService", function($scope, scoreService) {
-            $scope.red = { color: "red", rowClass: "qwixx-row-1", imageSrc: "Content/Icons/lock-icon-red.png", order: "asc" };
-            $scope.yellow = { color: "yellow", rowClass: "qwixx-row-2", imageSrc: "Content/Icons/lock-icon-yellow.png", order: "asc" };
-            $scope.green = { color: "green", rowClass: "qwixx-row-3", imageSrc: "Content/Icons/lock-icon-green.png", order: "desc" };
-            $scope.blue = { color: "blue", rowClass: "qwixx-row-4", imageSrc: "Content/Icons/lock-icon-blue.png", order: "desc" };
+            $scope.red = { color: "red", rowClass: "qwixx-row-1", imageSrc: "Content/Icons/lock-icon-red.png", order: "asc", scoreService: scoreService };
+            $scope.yellow = { color: "yellow", rowClass: "qwixx-row-2", imageSrc: "Content/Icons/lock-icon-yellow.png", order: "asc", scoreService: scoreService };
+            $scope.green = { color: "green", rowClass: "qwixx-row-3", imageSrc: "Content/Icons/lock-icon-green.png", order: "desc", scoreService: scoreService };
+            $scope.blue = { color: "blue", rowClass: "qwixx-row-4", imageSrc: "Content/Icons/lock-icon-blue.png", order: "desc", scoreService: scoreService };
             $scope.rules = { rowClass: "qwixx-row-5" };
             $scope.score = { rowClass: "qwixx-row-6", scoreService: scoreService };
         }
@@ -165,18 +165,40 @@
         scores.red = {};
         scores.red.list = [];
         scores.red.total = 0;
+        scores.red.hasLock = false;
         scores.yellow = {};
         scores.yellow.list = [];
         scores.yellow.total = 0;
+        scores.yellow.hasLock = false;
         scores.green = {};
         scores.green.list = [];
         scores.green.total = 0;
+        scores.green.hasLock = false;
         scores.blue = {};
         scores.blue.list = [];
         scores.blue.total = 0;
+        scores.blue.hasLock = false;
         scores.wasted = {};
         scores.wasted.amount = 0;
         scores.wasted.total = 0;
+
+        scores.hasLock = function(color) {
+            if (!color) {
+                return false;
+            }
+            switch (color) {
+            case "red":
+                return scores.red.hasLock;
+            case "yellow":
+                return scores.yellow.hasLock;
+            case "green":
+                return scores.green.hasLock;
+            case "blue":
+                return scores.blue.hasLock;
+            default:
+                return false;
+            }
+        }
 
         scores.getList = function(color) {
             if (!color) {
@@ -214,6 +236,19 @@
             if (list.indexOf("lock") >= 0) {
                 return false;
             }
+            // Should be at least 5 entries.
+            if (list.length < 5) {
+                return false;
+            }
+            if (color === "red" || color === "yellow") {
+                if (list.indexOf(12) < 0) {
+                    return false;
+                }
+            } else {
+                if (list.indexOf(2) < 0) {
+                    return false;
+                }
+            }
             list.push("lock");
             scores.recalculate();
             return true;
@@ -242,9 +277,11 @@
             if (list.indexOf("lock") >= 0) {
                 return false;
             }
-            
             // Add the score to the list.
             list.push(intValue);
+
+            // Try to add lock. Might fail if conditions are not met but that's ok.
+            scores.addLock(color);
             scores.recalculate();
             return true;
         };
@@ -261,6 +298,10 @@
             scores.green.total = calc(scores.getList("green").length);
             scores.blue.total = calc(scores.getList("blue").length);
             scores.wasted.total = scores.wasted.amount * 5;
+            scores.red.hasLock = scores.getList("red").indexOf("lock") >= 0;
+            scores.yellow.hasLock = scores.getList("yellow").indexOf("lock") >= 0;
+            scores.green.hasLock = scores.getList("green").indexOf("lock") >= 0;
+            scores.blue.hasLock = scores.getList("blue").indexOf("lock") >= 0;
         };
         return scores;
     });

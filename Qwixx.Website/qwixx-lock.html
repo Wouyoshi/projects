@@ -1,3 +1,3 @@
-﻿<div class="qwixx-lock" ng-class="(qwixxSelected==true)? 'qwixx-number-selected' : ''" ng-click="numberClicked()" ng-controller="qwixxNumberController">
+﻿<div class="qwixx-lock" ng-class="(row.scoreService.hasLock(row.color)) ? 'qwixx-number-selected' : ''" ng-click="numberClicked()" ng-controller="qwixxNumberController">
     <img class="qwixx-lock-img" src="{{row.imageSrc}}" />
 </div>
