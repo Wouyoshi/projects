@@ -2,23 +2,30 @@
     "use strict";
     var app = angular.module("qwixx", []);
 
-    app.controller("qwixxController", [
-        "$scope", "scoreService", function($scope, scoreService) {
-            $scope.red = { color: "red", rowClass: "qwixx-row-1", imageSrc: "Content/Icons/lock-icon-red.png", order: "asc", scoreService: scoreService };
-            $scope.yellow = { color: "yellow", rowClass: "qwixx-row-2", imageSrc: "Content/Icons/lock-icon-yellow.png", order: "asc", scoreService: scoreService };
-            $scope.green = { color: "green", rowClass: "qwixx-row-3", imageSrc: "Content/Icons/lock-icon-green.png", order: "desc", scoreService: scoreService };
-            $scope.blue = { color: "blue", rowClass: "qwixx-row-4", imageSrc: "Content/Icons/lock-icon-blue.png", order: "desc", scoreService: scoreService };
+    app.controller("qwixxCardController", [
+        "$scope", "$attrs", "scoreService", function ($scope, $attrs, scoreService) {
+            if (!$scope.players) {
+                $scope.players = [];
+            }
+            var playerName = $attrs.player;
+            scoreService.addPlayer(playerName);
+            $scope.red = { playerName: playerName, color: "red", rowClass: "qwixx-row-1", imageSrc: "Content/Icons/lock-icon-red.png", order: "asc", scoreService: scoreService };
+            $scope.yellow = { playerName: playerName, color: "yellow", rowClass: "qwixx-row-2", imageSrc: "Content/Icons/lock-icon-yellow.png", order: "asc", scoreService: scoreService };
+            $scope.green = { playerName: playerName, color: "green", rowClass: "qwixx-row-3", imageSrc: "Content/Icons/lock-icon-green.png", order: "desc", scoreService: scoreService };
+            $scope.blue = { playerName: playerName, color: "blue", rowClass: "qwixx-row-4", imageSrc: "Content/Icons/lock-icon-blue.png", order: "desc", scoreService: scoreService };
             $scope.rules = { rowClass: "qwixx-row-5" };
-            $scope.score = { rowClass: "qwixx-row-6", scoreService: scoreService };
+            $scope.score = { playerName: playerName, rowClass: "qwixx-row-6", scoreService: scoreService };
         }
     ]);
-
     app.directive("qwixxCard", function () {
         return {
             restrict: "E",
-            templateUrl: "qwixx-card.html"
+            templateUrl: "qwixx-card.html",
+            controller: 'qwixxCardController',
+            scope: true
         };
     });
+
     app.directive("qwixxNumberRow", function() {
         return {
             restrict: "E",
@@ -39,17 +46,17 @@
     });
     app.controller("qwixxRowController", [
         "$scope", "scoreService", function ($scope, scoreService) {
-            $scope.two = { numberText: "2", scoreService: scoreService, color: $scope.$parent.row.color };
-            $scope.three = { numberText: "3", scoreService: scoreService, color: $scope.$parent.row.color };
-            $scope.four = { numberText: "4", scoreService: scoreService, color: $scope.$parent.row.color };
-            $scope.five = { numberText: "5", scoreService: scoreService, color: $scope.$parent.row.color };
-            $scope.six = { numberText: "6", scoreService: scoreService, color: $scope.$parent.row.color };
-            $scope.seven = { numberText: "7", scoreService: scoreService, color: $scope.$parent.row.color };
-            $scope.eight = { numberText: "8", scoreService: scoreService, color: $scope.$parent.row.color };
-            $scope.nine = { numberText: "9", scoreService: scoreService, color: $scope.$parent.row.color };
-            $scope.ten = { numberText: "10", scoreService: scoreService, color: $scope.$parent.row.color };
-            $scope.eleven = { numberText: "11", scoreService: scoreService, color: $scope.$parent.row.color };
-            $scope.twelve = { numberText: "12", scoreService: scoreService, color: $scope.$parent.row.color };
+            $scope.two = { numberText: "2", scoreService: scoreService, color: $scope.$parent.row.color, playerName: $scope.$parent.row.playerName };
+            $scope.three = { numberText: "3", scoreService: scoreService, color: $scope.$parent.row.color, playerName: $scope.$parent.row.playerName };
+            $scope.four = { numberText: "4", scoreService: scoreService, color: $scope.$parent.row.color, playerName: $scope.$parent.row.playerName };
+            $scope.five = { numberText: "5", scoreService: scoreService, color: $scope.$parent.row.color, playerName: $scope.$parent.row.playerName };
+            $scope.six = { numberText: "6", scoreService: scoreService, color: $scope.$parent.row.color, playerName: $scope.$parent.row.playerName };
+            $scope.seven = { numberText: "7", scoreService: scoreService, color: $scope.$parent.row.color, playerName: $scope.$parent.row.playerName };
+            $scope.eight = { numberText: "8", scoreService: scoreService, color: $scope.$parent.row.color, playerName: $scope.$parent.row.playerName };
+            $scope.nine = { numberText: "9", scoreService: scoreService, color: $scope.$parent.row.color, playerName: $scope.$parent.row.playerName };
+            $scope.ten = { numberText: "10", scoreService: scoreService, color: $scope.$parent.row.color, playerName: $scope.$parent.row.playerName };
+            $scope.eleven = { numberText: "11", scoreService: scoreService, color: $scope.$parent.row.color, playerName: $scope.$parent.row.playerName };
+            $scope.twelve = { numberText: "12", scoreService: scoreService, color: $scope.$parent.row.color, playerName: $scope.$parent.row.playerName };
 
             $scope.checked1 = { amountText: "1x", scoreText: "1" };
             $scope.checked2 = { amountText: "2x", scoreText: "3" };
@@ -85,9 +92,10 @@
             $scope.qwixxSelected = false;
             $scope.numberClicked = function() {
                 var color = $scope.$parent.$parent.$parent.row.color;
+                var playerName = $scope.$parent.$parent.$parent.row.playerName;
                 var added = false;
                 if (!$scope.$parent.number) {
-                    added = scoreService.addLock(color);
+                    added = scoreService.addLock(playerName, color);
                     if (!added) {
                         return;
                     }
@@ -96,7 +104,7 @@
                 }
 
                 var number = $scope.$parent.number.numberText;
-                added = scoreService.addNumber(color, number);
+                added = scoreService.addNumber(playerName, color, number);
                 if (!added) {
                     return;
                 }
@@ -157,90 +165,156 @@
     });
     app.factory("scoreService", function() {
         var scores = {};
-        scores.red = {};
-        scores.red.list = [];
-        scores.red.total = 0;
-        scores.red.hasLock = false;
-        scores.yellow = {};
-        scores.yellow.list = [];
-        scores.yellow.total = 0;
-        scores.yellow.hasLock = false;
-        scores.green = {};
-        scores.green.list = [];
-        scores.green.total = 0;
-        scores.green.hasLock = false;
-        scores.blue = {};
-        scores.blue.list = [];
-        scores.blue.total = 0;
-        scores.blue.hasLock = false;
-        scores.wasted = {};
-        scores.wasted.amount = 0;
-        scores.wasted.total = 0;
+        scores.playerList = [];
 
-        scores.hasLock = function(color) {
+        scores.addPlayer = function(playerName) {
+            if (!playerName) {
+                return;
+            }
+            for (var i = 0; i < scores.playerList.length; i++) {
+                if (scores.playerList[i].playerName === playerName) {
+                    return;
+                }
+            }
+            var player = {
+                playerName: playerName,
+                red: {
+                    list: [],
+                    total: 0,
+                    hasLock: false
+                },
+                yellow: {
+                    list: [],
+                    total: 0,
+                    hasLock: false
+                },
+                green: {
+                    list: [],
+                    total: 0,
+                    hasLock: false
+                },
+                blue: {
+                    list: [],
+                    total: 0,
+                    hasLock: false
+                },
+                wasted: {
+                    amount: 0,
+                    total: 0
+                }
+            };
+
+            scores.playerList.push(player);
+        };
+        scores.getPlayer = function (playerName) {
+            if (!playerName) {
+                return null;
+            }
+            for (var i = 0; i < scores.playerList.length; i++) {
+                if (scores.playerList[i].playerName === playerName) {
+                    return scores.playerList[i];
+                }
+            }
+            return null;
+        };
+        scores.hasLock = function (playerName, color) {
+            if (!playerName) {
+                return false;
+            }
             if (!color) {
                 return false;
             }
+
+            var player = scores.getPlayer(playerName);
+            if (player == null) {
+                return false;
+            }
+
             switch (color) {
             case "red":
-                return scores.red.hasLock;
+                return player.red.hasLock;
             case "yellow":
-                return scores.yellow.hasLock;
+                return player.yellow.hasLock;
             case "green":
-                return scores.green.hasLock;
+                return player.green.hasLock;
             case "blue":
-                return scores.blue.hasLock;
+                return player.blue.hasLock;
             default:
                 return false;
             }
         };
-        scores.isInList = function(color, number) {
+        scores.isInList = function (playerName, color, number) {
             /// <summary>
             /// Checks if the number is in the list.
             /// </summary>
             /// <param name="color"></param>
             /// <param name="number"></param>
             /// <returns type=""></returns>
+            if (!playerName) {
+                return false;
+            }
             if (!color) {
                 return false;
             }
-            var list = scores.getList(color);
+            
+            var list = scores.getList(playerName, color);
             if (!list) {
                 return false;
             }
             return list.indexOf(Number(number)) >= 0;
         };
 
-        scores.getList = function(color) {
+        scores.getList = function (playerName, color) {
             if (!color) {
                 return null;
             }
+
+            if (!playerName) {
+                return false;
+            }
+            var player = scores.getPlayer(playerName);
+            if (player == null) {
+                return false;
+            }
+
             switch (color) {
             case "red":
-                return scores.red.list;
+                return player.red.list;
             case "yellow":
-                return scores.yellow.list;
+                return player.yellow.list;
             case "green":
-                return scores.green.list;
+                return player.green.list;
             case "blue":
-                return scores.blue.list;
+                return player.blue.list;
             default:
                 return null;
             }
         };
-        scores.addWasted = function() {
-            if (scores.wasted.amount >= 4) {
+        scores.addWasted = function (playerName) {
+
+            if (!playerName) {
                 return;
             }
-            scores.wasted.amount++;
+            var player = scores.getPlayer(playerName);
+            if (player == null) {
+                return;
+            }
+
+            if (player.wasted.amount >= 4) {
+                return;
+            }
+            player.wasted.amount++;
             scores.recalculate();
 
         };
-        scores.addLock = function(color) {
+        scores.addLock = function (playerName, color) {
             if (!color) {
                 return false;
             }
-            var list = scores.getList(color);
+            if (!playerName) {
+                return false;
+            }
+            var list = scores.getList(playerName, color);
             if (list === null || list === undefined) {
                 return false;
             }
@@ -264,7 +338,7 @@
             scores.recalculate();
             return true;
         };
-        scores.addNumber = function(color, number) {
+        scores.addNumber = function (playerName, color, number) {
             // validate.
             if (!color || !number) {
                 return false;
@@ -272,12 +346,16 @@
             if (isNaN(number)) {
                 return false;
             }
+
+            if (!playerName) {
+                return false;
+            }
             // make sure it's an int value.
             var intValue = Math.floor(number);
             if (intValue < 2 || number > 12) {
                 return false;
             }
-            var list = scores.getList(color);
+            var list = scores.getList(playerName, color);
             if (list === null || list === undefined) {
                 return false;
             }
@@ -308,7 +386,7 @@
             list.push(intValue);
 
             // Try to add lock. Might fail if conditions are not met but that's ok.
-            scores.addLock(color);
+            scores.addLock(playerName, color);
             scores.recalculate();
             return true;
         };
@@ -320,15 +398,18 @@
                 }
                 return total;
             };
-            scores.red.total = calc(scores.getList("red").length);
-            scores.yellow.total = calc(scores.getList("yellow").length);
-            scores.green.total = calc(scores.getList("green").length);
-            scores.blue.total = calc(scores.getList("blue").length);
-            scores.wasted.total = scores.wasted.amount * 5;
-            scores.red.hasLock = scores.getList("red").indexOf("lock") >= 0;
-            scores.yellow.hasLock = scores.getList("yellow").indexOf("lock") >= 0;
-            scores.green.hasLock = scores.getList("green").indexOf("lock") >= 0;
-            scores.blue.hasLock = scores.getList("blue").indexOf("lock") >= 0;
+            for (var j = 0; j < scores.playerList.length; j++) {
+                var player = scores.playerList[j];
+                player.red.total = calc(scores.getList(player.playerName, "red").length);
+                player.yellow.total = calc(scores.getList(player.playerName, "yellow").length);
+                player.green.total = calc(scores.getList(player.playerName, "green").length);
+                player.blue.total = calc(scores.getList(player.playerName, "blue").length);
+                player.wasted.total = player.wasted.amount * 5;
+                player.red.hasLock = scores.getList(player.playerName, "red").indexOf("lock") >= 0;
+                player.yellow.hasLock = scores.getList(player.playerName, "yellow").indexOf("lock") >= 0;
+                player.green.hasLock = scores.getList(player.playerName, "green").indexOf("lock") >= 0;
+                player.blue.hasLock = scores.getList(player.playerName, "blue").indexOf("lock") >= 0;
+            }
         };
         return scores;
     });
