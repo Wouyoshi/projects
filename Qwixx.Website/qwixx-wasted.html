@@ -1,1 +1,1 @@
-﻿<div class="qwixx-wasted" ng-class="(waste.scoreService.wasted.amount >= waste.amount) ? 'qwixx-wasted-selected' : ''" ng-click="waste.wastedClicked()" ></div>
+﻿<div class="qwixx-wasted" ng-class="(waste.scoreService.getWastedAmount(waste.playerName) >= waste.amount) ? 'qwixx-wasted-selected' : ''" ng-click="waste.scoreService.addWasted(waste.playerName)"></div>

@@ -1,16 +1,16 @@
 ﻿<div class="qwixx-row {{row.rowClass}}" ng-controller="qwixxRowController">
     <div class="qwixx-scores">
         <div class="qwixx-score-text">Total sum</div>
-        <div class="qwixx-score qwixx-score-1">{{row.scoreService.red.total}}</div>
+        <div class="qwixx-score qwixx-score-1">{{row.scoreService.getTotal(row.playerName, "red")}}</div>
         <div class="qwixx-plus">+</div>
-        <div class="qwixx-score qwixx-score-2">{{row.scoreService.yellow.total}}</div>
+        <div class="qwixx-score qwixx-score-2">{{row.scoreService.getTotal(row.playerName, "yellow")}}</div>
         <div class="qwixx-plus">+</div>
-        <div class="qwixx-score qwixx-score-3">{{row.scoreService.green.total}}</div>
+        <div class="qwixx-score qwixx-score-3">{{row.scoreService.getTotal(row.playerName, "green")}}</div>
         <div class="qwixx-plus">+</div>
-        <div class="qwixx-score qwixx-score-4">{{row.scoreService.blue.total}}</div>
+        <div class="qwixx-score qwixx-score-4">{{row.scoreService.getTotal(row.playerName, "blue")}}</div>
         <div class="qwixx-minus">-</div>
-        <div class="qwixx-score qwixx-score-5">{{row.scoreService.wasted.total}}</div>
+        <div class="qwixx-score qwixx-score-5">{{row.scoreService.getWastedTotal(row.playerName)}}</div>
         <div class="qwixx-equals">=</div>
-        <div class="qwixx-score-total">{{row.scoreService.red.total + row.scoreService.yellow.total + row.scoreService.green.total + row.scoreService.blue.total - row.scoreService.wasted.total}}</div>
+        <div class="qwixx-score-total">{{row.scoreService.getTotal(row.playerName, "red") + row.scoreService.getTotal(row.playerName, "yellow") + row.scoreService.getTotal(row.playerName, "green") + row.scoreService.getTotal(row.playerName, "blue") - row.scoreService.getWastedTotal(row.playerName)}}</div>
     </div>
 </div>

@@ -13,7 +13,7 @@
             $scope.yellow = { playerName: playerName, color: "yellow", rowClass: "qwixx-row-2", imageSrc: "Content/Icons/lock-icon-yellow.png", order: "asc", scoreService: scoreService };
             $scope.green = { playerName: playerName, color: "green", rowClass: "qwixx-row-3", imageSrc: "Content/Icons/lock-icon-green.png", order: "desc", scoreService: scoreService };
             $scope.blue = { playerName: playerName, color: "blue", rowClass: "qwixx-row-4", imageSrc: "Content/Icons/lock-icon-blue.png", order: "desc", scoreService: scoreService };
-            $scope.rules = { rowClass: "qwixx-row-5" };
+            $scope.rules = { playerName: playerName, rowClass: "qwixx-row-5" };
             $scope.score = { playerName: playerName, rowClass: "qwixx-row-6", scoreService: scoreService };
         }
     ]);
@@ -114,13 +114,10 @@
     ]);
     app.controller("qwixxWastedController", [
         "$scope", "scoreService", function ($scope, scoreService) {
-            var wastedClicked = function () {
-                scoreService.addWasted();
-            };
-            $scope.waste1 = { amount: 1, qwixxSelected: false, wastedClicked: wastedClicked, scoreService: scoreService };
-            $scope.waste2 = { amount: 2, qwixxSelected: false, wastedClicked: wastedClicked, scoreService: scoreService };
-            $scope.waste3 = { amount: 3, qwixxSelected: false, wastedClicked: wastedClicked, scoreService: scoreService };
-            $scope.waste4 = { amount: 4, qwixxSelected: false, wastedClicked: wastedClicked, scoreService: scoreService };
+            $scope.waste1 = { amount: 1, qwixxSelected: false, scoreService: scoreService, playerName: $scope.$parent.$parent.row.playerName };
+            $scope.waste2 = { amount: 2, qwixxSelected: false, scoreService: scoreService, playerName: $scope.$parent.$parent.row.playerName };
+            $scope.waste3 = { amount: 3, qwixxSelected: false, scoreService: scoreService, playerName: $scope.$parent.$parent.row.playerName };
+            $scope.waste4 = { amount: 4, qwixxSelected: false, scoreService: scoreService, playerName: $scope.$parent.$parent.row.playerName };
         }
     ]);
 
@@ -206,6 +203,26 @@
 
             scores.playerList.push(player);
         };
+        scores.getWastedTotal = function (playerName) {
+            if (!playerName) {
+                return 0;
+            }
+            var player = scores.getPlayer(playerName);
+            if (!player) {
+                return 0;
+            }
+            return player.wasted.total;
+        };
+        scores.getWastedAmount = function(playerName) {
+            if (!playerName) {
+                return 0;
+            }
+            var player = scores.getPlayer(playerName);
+            if (!player) {
+                return 0;
+            }
+            return player.wasted.amount;
+        };
         scores.getPlayer = function (playerName) {
             if (!playerName) {
                 return null;
@@ -270,6 +287,20 @@
             }
 
             if (!playerName) {
+                return null;
+            }
+            var colorItem = scores.getColor(playerName, color);
+            if (!colorItem) {
+                return null;
+            }
+            return colorItem.list;
+        };
+        scores.getColor = function(playerName, color) {
+            if (!color) {
+                return null;
+            }
+
+            if (!playerName) {
                 return false;
             }
             var player = scores.getPlayer(playerName);
@@ -279,13 +310,13 @@
 
             switch (color) {
             case "red":
-                return player.red.list;
+                return player.red;
             case "yellow":
-                return player.yellow.list;
+                return player.yellow;
             case "green":
-                return player.green.list;
+                return player.green;
             case "blue":
-                return player.blue.list;
+                return player.blue;
             default:
                 return null;
             }
@@ -389,6 +420,19 @@
             scores.addLock(playerName, color);
             scores.recalculate();
             return true;
+        };
+        scores.getTotal = function(playerName, color) {
+            if (!playerName) {
+                return 0;
+            }
+            if (!color) {
+                return 0;
+            }
+            var colorItem = scores.getColor(playerName, color);
+            if (!colorItem) {
+                return 0;
+            }
+            return colorItem.total;
         };
         scores.recalculate = function() {
             var calc = function(length) {
