@@ -5,13 +5,34 @@
     <link href="Content/qwixx-card.min.css" rel="stylesheet"/>
 </head>
 <body>
-    <div ng-app="qwixx" >
+    <div class="qwixx-die">
+        <div class="qwixx-die-dot"></div>
+        <div class="qwixx-die-dot"></div>
+        <div class="qwixx-die-dot"></div>
+        <div class="qwixx-die-dot"></div>
+        <div class="qwixx-die-dot"></div>
+        <div class="qwixx-die-dot"></div>
+    </div>
+    <div class="qwixx-die">
+        <div class="qwixx-die-5-top">
+            <div class="qwixx-die-dot"></div>
+            <div class="qwixx-die-dot"></div>
+        </div>
+        <div class="qwixx-die-5-middle">
+            <div class="qwixx-die-dot"></div>
+        </div>
+        <div class="qwixx-die-5-bottom">
+            <div class="qwixx-die-dot"></div>
+            <div class="qwixx-die-dot"></div>
+        </div>
+    </div>
+    <div ng-app="qwixx">
         <qwixx-card player="player1"></qwixx-card>
         <qwixx-card player="player2"></qwixx-card>
 
     </div>
 
-    <script src="Scripts/angular.min.js"></script>
-    <script src="Scripts/app.js"></script>
+<script src="Scripts/angular.min.js"></script>
+<script src="Scripts/app.js"></script>
 </body>
 </html>
