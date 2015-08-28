@@ -1,36 +1,61 @@
 ﻿<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" >
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <title>Qwixx game</title>
     <link href="Content/qwixx-card.min.css" rel="stylesheet"/>
 </head>
 <body>
+<div>
     <div class="qwixx-die">
-        <div class="qwixx-die-dot"></div>
-        <div class="qwixx-die-dot"></div>
-        <div class="qwixx-die-dot"></div>
-        <div class="qwixx-die-dot"></div>
-        <div class="qwixx-die-dot"></div>
-        <div class="qwixx-die-dot"></div>
+        <div class="qwixx-die-top-left qwixx-die-dot"></div>
+        <div class="qwixx-die-top-right qwixx-die-dot"></div>
+        <div class="qwixx-die-middle-left qwixx-die-dot"></div>
+        <div class="qwixx-die-middle-right qwixx-die-dot"></div>
+        <div class="qwixx-die-bottom-left qwixx-die-dot"></div>
+        <div class="qwixx-die-bottom-right qwixx-die-dot"></div>
     </div>
+</div>
+<div>
     <div class="qwixx-die">
-        <div class="qwixx-die-5-top">
-            <div class="qwixx-die-dot"></div>
-            <div class="qwixx-die-dot"></div>
-        </div>
-        <div class="qwixx-die-5-middle">
-            <div class="qwixx-die-dot"></div>
-        </div>
-        <div class="qwixx-die-5-bottom">
-            <div class="qwixx-die-dot"></div>
-            <div class="qwixx-die-dot"></div>
-        </div>
+        <div class="qwixx-die-top-left qwixx-die-dot"></div>
+        <div class="qwixx-die-top-right qwixx-die-dot"></div>
+        <div class="qwixx-die-middle qwixx-die-dot"></div>
+        <div class="qwixx-die-bottom-left qwixx-die-dot"></div>
+        <div class="qwixx-die-bottom-right qwixx-die-dot"></div>
     </div>
-    <div ng-app="qwixx">
-        <qwixx-card player="player1"></qwixx-card>
-        <qwixx-card player="player2"></qwixx-card>
+</div>
+<div>
+    <div class="qwixx-die">
+        <div class="qwixx-die-top-left qwixx-die-dot"></div>
+        <div class="qwixx-die-top-right qwixx-die-dot"></div>
+        <div class="qwixx-die-bottom-left qwixx-die-dot"></div>
+        <div class="qwixx-die-bottom-right qwixx-die-dot"></div>
+    </div>
+</div>
+<div>
+    <div class="qwixx-die">
+        <div class="qwixx-die-top-left qwixx-die-dot"></div>
+        <div class="qwixx-die-middle qwixx-die-dot"></div>
+        <div class="qwixx-die-bottom-right qwixx-die-dot"></div>
+    </div>
+</div>
+<div>
+    <div class="qwixx-die">
+        <div class="qwixx-die-top-left qwixx-die-dot"></div>
+        <div class="qwixx-die-bottom-right qwixx-die-dot"></div>
+    </div>
+</div>
+<div>
+    <div class="qwixx-die">
+        <div class="qwixx-die-middle qwixx-die-dot"></div>
+    </div>
+</div>
+<div ng-app="qwixx">
+    <qwixx-card player="player1"></qwixx-card>
+    <qwixx-card player="player2"></qwixx-card>
 
-    </div>
+</div>
+
 
 <script src="Scripts/angular.min.js"></script>
 <script src="Scripts/app.js"></script>

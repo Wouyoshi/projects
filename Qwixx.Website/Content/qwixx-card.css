@@ -4,20 +4,49 @@
   border: 1px solid black;
   border-radius: 5px;
   font-size: 0;
+  position: relative;
 }
 .qwixx-die-dot {
   display: inline-block;
-  margin-left: 5px;
-  margin-top: 2px;
   width: 7px;
   height: 7px;
   background-color: black;
   border-radius: 50px;
 }
-.qwixx-die-5-middle {
-  display: inline-block;
-  margin-left: 6px;
-  margin-top: 0;
+.qwixx-die-top-left {
+  position: absolute;
+  left: 3px;
+  top: 1px;
+}
+.qwixx-die-top-right {
+  position: absolute;
+  left: 17px;
+  top: 1px;
+}
+.qwixx-die-middle-left {
+  position: absolute;
+  left: 3px;
+  top: 10px;
+}
+.qwixx-die-middle-right {
+  position: absolute;
+  left: 17px;
+  top: 10px;
+}
+.qwixx-die-bottom-left {
+  position: absolute;
+  left: 3px;
+  top: 19px;
+}
+.qwixx-die-bottom-right {
+  position: absolute;
+  left: 17px;
+  top: 19px;
+}
+.qwixx-die-middle {
+  position: absolute;
+  left: 10px;
+  top: 10px;
 }
 .qwixx-card {
   width: 600px;
