@@ -65,6 +65,7 @@
     <Content Include="Content\Icons\lock-icon-red.png" />
     <Content Include="Content\Icons\lock-icon-yellow.png" />
     <Content Include="qwixx-card.html" />
+    <Content Include="qwixx-dice.html" />
     <Content Include="qwixx-die.html" />
     <Content Include="qwixx-wasted.html" />
     <Content Include="qwixx-lock.html" />

@@ -72,6 +72,21 @@
             $scope.checked12 = { amountText: "12x", scoreText: "78" };
         }
     ]);
+    app.directive("qwixxDie", [
+        "scoreService", function(scoreService) {
+            return {
+                restrict: "E",
+                templateUrl: "qwixx-die.html",
+                scope: {
+                    color: "=",
+                    diename: "="
+                },
+                link: function(scope, element, attrs) {
+                    scope.scoreService = scoreService;
+                }
+            };
+        }
+    ]);
     app.directive("qwixxNumber", function() {
         return {
             restrict: "E",
@@ -160,10 +175,64 @@
             templateUrl: "qwixx-wasted.html"
         };
     });
+    app.directive("qwixxDice", function () {
+        return {
+            restrict: "E",
+            templateUrl: "qwixx-dice.html"
+        };
+    });
     app.factory("scoreService", function() {
         var scores = {};
         scores.playerList = [];
+        scores.currentTurnNumber = 0;
+        scores.turnOrder = [];
+        scores.turns = [];
 
+        scores.getDiceNumber = function(diceName) {
+            if (!diceName) {
+                return 0;
+            }
+            var currentTurn = scores.turns[scores.currentTurnNumber - 1];
+            if (!currentTurn) {
+                return 0;
+            }
+            switch (diceName) {
+            case "dieRed":
+                return currentTurn.dieRed;
+            case "dieYellow":
+                return currentTurn.dieYellow;
+            case "dieGreen":
+                return currentTurn.dieGreen;
+            case "dieBlue":
+                return currentTurn.dieBlue;
+            case "dieWhite1":
+                return currentTurn.dieWhite1;
+            case "dieWhite2":
+                return currentTurn.dieWhite2;
+            default:
+                return 0;
+            }
+
+        };
+        scores.startNewTurn = function () {
+            var nextTurn = scores.currentTurnNumber + 1;
+            var randomNumber = function(min, max) {
+                return Math.floor(Math.random() * (max - min + 1) + min);
+            };
+            var turn = {
+                turnNumber: nextTurn,
+                playersWhoDidAction: [],
+                turnOwnerAction: false,
+                dieRed: randomNumber(1, 6),
+                dieYellow: randomNumber(1, 6),
+                dieGreen: randomNumber(1, 6),
+                dieBlue: randomNumber(1, 6),
+                dieWhite1: randomNumber(1, 6),
+                dieWhite2: randomNumber(1, 6)
+            };
+            scores.turns.push(turn);
+            scores.currentTurnNumber = nextTurn;
+        };
         scores.addPlayer = function(playerName) {
             if (!playerName) {
                 return;
@@ -202,6 +271,7 @@
             };
 
             scores.playerList.push(player);
+            scores.turnOrder.push(player.playerName);
         };
         scores.getWastedTotal = function (playerName) {
             if (!playerName) {

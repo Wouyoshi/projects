@@ -1,52 +1,84 @@
-﻿.qwixx-die {
+﻿qwixx-dice {
+  font-size: 0;
+}
+.qwixx-die {
   width: 30px;
   height: 30px;
-  border: 1px solid black;
+  border: 1px solid;
   border-radius: 5px;
   font-size: 0;
   position: relative;
+  display: inline-block;
 }
 .qwixx-die-dot {
   display: inline-block;
   width: 7px;
   height: 7px;
-  background-color: black;
   border-radius: 50px;
 }
 .qwixx-die-top-left {
   position: absolute;
-  left: 3px;
-  top: 1px;
+  left: 4px;
+  top: 2px;
 }
 .qwixx-die-top-right {
   position: absolute;
-  left: 17px;
-  top: 1px;
+  left: 18px;
+  top: 2px;
 }
 .qwixx-die-middle-left {
   position: absolute;
-  left: 3px;
-  top: 10px;
+  left: 4px;
+  top: 11px;
 }
 .qwixx-die-middle-right {
   position: absolute;
-  left: 17px;
-  top: 10px;
+  left: 18px;
+  top: 11px;
 }
 .qwixx-die-bottom-left {
   position: absolute;
-  left: 3px;
-  top: 19px;
+  left: 4px;
+  top: 20px;
 }
 .qwixx-die-bottom-right {
   position: absolute;
-  left: 17px;
-  top: 19px;
+  left: 18px;
+  top: 20px;
 }
 .qwixx-die-middle {
   position: absolute;
-  left: 10px;
-  top: 10px;
+  left: 11px;
+  top: 11px;
+}
+.qwixx-die-white {
+  border-color: black;
+  background-color: white;
+}
+.qwixx-die-red {
+  border-color: #a90d1a;
+  background-color: #a90d1a;
+}
+.qwixx-die-yellow {
+  border-color: #ebaa06;
+  background-color: #ebaa06;
+}
+.qwixx-die-green {
+  border-color: #005b39;
+  background-color: #005b39;
+}
+.qwixx-die-blue {
+  border-color: #000f4f;
+  background-color: #000f4f;
+}
+.qwixx-die-white .qwixx-die-dot {
+  background-color: black;
+}
+.qwixx-die-red .qwixx-die-dot,
+.qwixx-die-yellow .qwixx-die-dot,
+.qwixx-die-green .qwixx-die-dot,
+.qwixx-die-blue .qwixx-die-dot {
+  background-color: white;
 }
 .qwixx-card {
   width: 600px;

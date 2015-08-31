@@ -1,1 +1,14 @@
-﻿
+﻿<div class="qwixx-die" ng-class="color === 'red' ?  'qwixx-die-red' :
+                                 color === 'yellow' ? 'qwixx-die-yellow' :
+                                 color === 'green' ? 'qwixx-die-green' :
+                                 color === 'blue' ? 'qwixx-die-blue' : 'qwixx-die-white'"
+     ng-click="scoreService.startNewTurn()">
+<div ng-if="scoreService && (scoreService.getDiceNumber(diename) == 2 || scoreService.getDiceNumber(diename) == 3 || scoreService.getDiceNumber(diename) == 4 || scoreService.getDiceNumber(diename) == 5 || scoreService.getDiceNumber(diename) == 6)" class="qwixx-die-top-left qwixx-die-dot"></div>
+<div ng-if="scoreService && (scoreService.getDiceNumber(diename) == 4 || scoreService.getDiceNumber(diename) == 5 || scoreService.getDiceNumber(diename) == 6)" class="qwixx-die-top-right qwixx-die-dot"></div>
+<div ng-if="scoreService && (scoreService.getDiceNumber(diename) == 6)" class="qwixx-die-middle-left qwixx-die-dot"></div>
+<div ng-if="scoreService && (scoreService.getDiceNumber(diename) == 1 || scoreService.getDiceNumber(diename) == 3 || scoreService.getDiceNumber(diename) == 5)" class="qwixx-die-middle qwixx-die-dot"></div>
+<div ng-if="scoreService && (scoreService.getDiceNumber(diename) == 6)" class="qwixx-die-middle-right qwixx-die-dot"></div>
+<div ng-if="scoreService && (scoreService.getDiceNumber(diename) == 4 || scoreService.getDiceNumber(diename) == 5 || scoreService.getDiceNumber(diename) == 6)" class="qwixx-die-bottom-left qwixx-die-dot"></div>
+<div ng-if="scoreService && (scoreService.getDiceNumber(diename) == 2 || scoreService.getDiceNumber(diename) == 3 || scoreService.getDiceNumber(diename) == 4 || scoreService.getDiceNumber(diename) == 5 || scoreService.getDiceNumber(diename) == 6)" class="qwixx-die-bottom-right qwixx-die-dot"></div>
+
+</div>
