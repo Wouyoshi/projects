@@ -219,9 +219,12 @@
             var randomNumber = function(min, max) {
                 return Math.floor(Math.random() * (max - min + 1) + min);
             };
+            // switch turns.
+            var turnOwner = scores.playerList[nextTurn % scores.playerList.length];
             var turn = {
                 turnNumber: nextTurn,
                 playersWhoDidAction: [],
+                turnOwner: turnOwner.playerName,
                 turnOwnerAction: false,
                 dieRed: randomNumber(1, 6),
                 dieYellow: randomNumber(1, 6),
@@ -404,7 +407,18 @@
             if (player.wasted.amount >= 4) {
                 return;
             }
+
+            // Has player already done an action this turn?
+            var currentTurn = scores.turns[scores.currentTurnNumber - 1];
+            if (!currentTurn) {
+                return;
+            }
+            if (currentTurn.playersWhoDidAction.indexOf(playerName) >= 0) {
+                return;
+            }
+
             player.wasted.amount++;
+            currentTurn.playersWhoDidAction.push(playerName);
             scores.recalculate();
 
         };
@@ -483,6 +497,65 @@
                 }
             }
 
+            // Has player already done an action this turn?
+            var currentTurn = scores.turns[scores.currentTurnNumber - 1];
+            if (!currentTurn) {
+                return false;
+            }
+            if (currentTurn.playersWhoDidAction.indexOf(playerName) >= 0 &&
+                (currentTurn.turnOwner !== playerName || currentTurn.turnOwnerAction)) {
+                return false;
+            }
+
+            // Check if the dice agree with this number.
+            var whiteTotal = currentTurn.dieWhite1 + currentTurn.dieWhite2;
+            // It works differently for owner of the turn.
+            if (currentTurn.turnOwner === playerName) {
+                var isWhiteTotalSameAllowed = intValue === whiteTotal;
+                var dieNumber = 0;
+                switch(color) {
+                    case "red":
+                        dieNumber = currentTurn.dieRed;
+                        break;
+                    case "yellow":
+                        dieNumber = currentTurn.dieYellow;
+                        break;
+                    case "green":
+                        dieNumber = currentTurn.dieGreen;
+                        break;
+                    case "blue":
+                        dieNumber = currentTurn.dieBlue;
+                        break;
+                    default:
+                        return false;
+                }
+                var isColoredTotalSameAllowed = intValue === currentTurn.dieWhite1 + dieNumber || intValue === currentTurn.dieWhite2 + dieNumber;
+                if (!isWhiteTotalSameAllowed && !isColoredTotalSameAllowed) { // Dice must be ok.
+                    return false;
+                } else if (!isWhiteTotalSameAllowed && currentTurn.turnOwnerAction) { // Player may only do 1 colored action.
+                    return false;
+                } else if (!isColoredTotalSameAllowed && currentTurn.playersWhoDidAction.indexOf(playerName) >= 0) { // Player may only do 1 white action.
+                    return false;
+                } else if (isWhiteTotalSameAllowed && isColoredTotalSameAllowed) { 
+                    // This one is tricky. What action should you do if both are allowed?
+                    // According to the rules white goes first.
+                    currentTurn.playersWhoDidAction.push(playerName);
+                } else if (isWhiteTotalSameAllowed) {
+                    currentTurn.playersWhoDidAction.push(playerName);
+                } else if (isColoredTotalSameAllowed) {
+                    currentTurn.turnOwnerAction = true;
+                }
+            } else {
+                // If not the turn owner, just look at the white dice.
+                if (intValue !== whiteTotal) {
+                    return false;
+                }
+
+
+                // Make sure player can't do another action this turn.
+                currentTurn.playersWhoDidAction.push(playerName);
+            }
+
             // Add the score to the list.
             list.push(intValue);
 
@@ -491,6 +564,7 @@
             scores.recalculate();
             return true;
         };
+
         scores.getTotal = function(playerName, color) {
             if (!playerName) {
                 return 0;
