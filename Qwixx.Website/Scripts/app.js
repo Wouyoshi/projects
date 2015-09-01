@@ -215,17 +215,25 @@
 
         };
         scores.startNewTurn = function () {
+            // If this is not the first turn, check to see if a wasted should be added.
+            if (scores.currentTurnNumber > 0) {
+                var currentTurnOwner = scores.turns[scores.currentTurnNumber - 1].turnOwner;
+                // will only add a wasted if it should.
+                scores.addWasted(currentTurnOwner);
+            }
+
             var nextTurn = scores.currentTurnNumber + 1;
             var randomNumber = function(min, max) {
                 return Math.floor(Math.random() * (max - min + 1) + min);
             };
-            // switch turns.
+            // Switch turns.
             var turnOwner = scores.playerList[nextTurn % scores.playerList.length];
             var turn = {
                 turnNumber: nextTurn,
                 playersWhoDidAction: [],
                 turnOwner: turnOwner.playerName,
                 turnOwnerAction: false,
+                addedWasted: false,
                 dieRed: randomNumber(1, 6),
                 dieYellow: randomNumber(1, 6),
                 dieGreen: randomNumber(1, 6),
@@ -408,17 +416,24 @@
                 return;
             }
 
+
             // Has player already done an action this turn?
             var currentTurn = scores.turns[scores.currentTurnNumber - 1];
             if (!currentTurn) {
                 return;
             }
-            if (currentTurn.playersWhoDidAction.indexOf(playerName) >= 0) {
+
+            // Can only add a wasted if this is the current player.
+            if (currentTurn.turnOwner !== playerName) {
+                return;
+            }
+            // You can't add wasted if already an action has been done.
+            if (currentTurn.playersWhoDidAction.indexOf(playerName) >= 0 || currentTurn.turnOwnerAction || currentTurn.addedWasted) {
                 return;
             }
 
             player.wasted.amount++;
-            currentTurn.playersWhoDidAction.push(playerName);
+            currentTurn.addedWasted = true;
             scores.recalculate();
 
         };
@@ -506,6 +521,10 @@
                 (currentTurn.turnOwner !== playerName || currentTurn.turnOwnerAction)) {
                 return false;
             }
+            // If a this is the turn owner and a wasted has been added, you can't add a number.
+            if (currentTurn.turnOwner === playerName && currentTurn.addedWasted) {
+                return false;
+            }
 
             // Check if the dice agree with this number.
             var whiteTotal = currentTurn.dieWhite1 + currentTurn.dieWhite2;
@@ -550,9 +569,7 @@
                 if (intValue !== whiteTotal) {
                     return false;
                 }
-
-
-                // Make sure player can't do another action this turn.
+                // Make sure the player can't do another action this turn.
                 currentTurn.playersWhoDidAction.push(playerName);
             }
 
