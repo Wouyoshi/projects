@@ -175,10 +175,20 @@
             templateUrl: "qwixx-wasted.html"
         };
     });
+    app.controller("qwixxDiceController", ["$scope","scoreService" , function($scope, scoreService) {
+        $scope.scoreService = scoreService;
+    }]);
     app.directive("qwixxDice", function () {
         return {
             restrict: "E",
-            templateUrl: "qwixx-dice.html"
+            templateUrl: "qwixx-dice.html",
+            controller: "qwixxDiceController"
+        };
+    });
+    app.directive("qwixxGame", function () {
+        return {
+            restrict: "E",
+            templateUrl: "qwixx-game.html"
         };
     });
     app.factory("scoreService", function() {
@@ -187,6 +197,11 @@
         scores.currentTurnNumber = 0;
         scores.turnOrder = [];
         scores.turns = [];
+        scores.redDiePresent = true;
+        scores.yellowDiePresent = true;
+        scores.greenDiePresent = true;
+        scores.blueDiePresent = true;
+        scores.gameOver = false;
 
         scores.getDiceNumber = function(diceName) {
             if (!diceName) {
@@ -217,11 +232,53 @@
         scores.startNewTurn = function () {
             // If this is not the first turn, check to see if a wasted should be added.
             if (scores.currentTurnNumber > 0) {
-                var currentTurnOwner = scores.turns[scores.currentTurnNumber - 1].turnOwner;
+                var currentTurn = scores.turns[scores.currentTurnNumber - 1];
+                var currentTurnOwner = currentTurn.turnOwner;
                 // will only add a wasted if it should.
                 scores.addWasted(currentTurnOwner);
+                // if total wasted is 4, game is over.
+                var totalWasted = scores.getWastedAmount(currentTurnOwner);
+                if (totalWasted >= 4) {
+                    scores.gameOver = true;
+                }
+                // Check if die should be removed.
+                for (var i = 0; i < scores.playerList.length; i++) {
+                    var player = scores.playerList[i];
+                    if (player.red.hasLock) {
+                        scores.redDiePresent = false;
+                    }
+                    if (player.yellow.hasLock) {
+                        scores.yellowDiePresent = false;
+                    }
+                    if (player.green.hasLock) {
+                        scores.greenDiePresent = false;
+                    }
+                    if (player.blue.hasLock) {
+                        scores.blueDiePresent = false;
+                    }
+                }
+                // Check how many dies are removed, if 2 or more, the game should end.
+                var diesRemoved = 0;
+                if (!scores.redDiePresent) {
+                    diesRemoved++;
+                }
+                if (!scores.yellowDiePresent) {
+                    diesRemoved++;
+                }
+                if (!scores.greenDiePresent) {
+                    diesRemoved++;
+                }
+                if (!scores.blueDiePresent) {
+                    diesRemoved++;
+                }
+                if (diesRemoved >= 2) {
+                    scores.gameOver = true;
+                }
             }
-
+            // Don't start new turn if game over.
+            if (scores.gameOver) {
+                return;
+            }
             var nextTurn = scores.currentTurnNumber + 1;
             var randomNumber = function(min, max) {
                 return Math.floor(Math.random() * (max - min + 1) + min);
@@ -496,7 +553,32 @@
             if (list.indexOf("lock") >= 0) {
                 return false;
             }
-            
+            // Make sure the die is actually present.
+            switch(color) {
+                case "red":
+                    if (!scores.redDiePresent) {
+                        return false;
+                    }
+                    break;
+                case "yellow":
+                    if (!scores.yellowDiePresent) {
+                        return false;
+                    }
+                    break;
+                case "green":
+                    if (!scores.greenDiePresent) {
+                        return false;
+                    }
+                    break;
+                case "blue":
+                    if (!scores.blueDiePresent) {
+                        return false;
+                    }
+                    break;
+                default:
+                    return false;
+            }
+
             // If there's already a higher number (in case of red and yellow) 
             // or lower number (in case of green and blue). Don't add.
             for (var i = 0; i < list.length; i++) {

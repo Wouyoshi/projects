@@ -3,18 +3,43 @@
 <head>
     <title>Qwixx game</title>
     <link href="Content/qwixx-card.min.css" rel="stylesheet"/>
+    <link href="Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="Content/bootstrap-theme.min.css" rel="stylesheet" />
+    <link href="Content/ui-bootstrap-csp.css" rel="stylesheet" />
 </head>
 <body>
-<div ng-app="qwixx">
-    <qwixx-dice></qwixx-dice>
+    <!-- Step 1: type your name
+         Step 2: create a game or join an existing game-->
 
-    <qwixx-card player="player1"></qwixx-card>
-    <qwixx-card player="player2"></qwixx-card>
+    <div class="form-group">
+        <label for="name">What is your name?</label>
+        <input id="name" type="text" class="form-control" />
+    </div>
+    <div class="form-group">
+        <button class="btn btn-info">Create new game</button>
+    </div>
+    <div class="panel panel-default ">
+        <div class="panel-body">
+            <h4>Not a great game <span class="label label-default">2/5</span></h4>
+            <h5>Pipo de Clown</h5>
+            <button class="btn btn-lg">Join</button>
+        </div>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <h4>Super game <span class="label label-default">1/5</span></h4>
+            <h5>Mamaloe</h5>
+        </div>
+    </div>
+    <div ng-app="qwixx">
+        <qwixx-game></qwixx-game>
 
-</div>
+    </div>
 
 
-<script src="Scripts/angular.min.js"></script>
-<script src="Scripts/app.js"></script>
+    <script src="Scripts/angular.min.js"></script>
+    <script src="Scripts/angular-ui/ui-bootstrap.min.js"></script>
+    <script src="Scripts/angular-ui/ui-bootstrap-tpls.min.js"></script>
+    <script src="Scripts/app.js"></script>
 </body>
 </html>
