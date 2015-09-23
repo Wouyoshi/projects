@@ -79,7 +79,8 @@
                 templateUrl: "qwixx-die.html",
                 scope: {
                     color: "=",
-                    diename: "="
+                    diename: "=",
+                    diceNumber: "="
                 },
                 link: function(scope, element, attrs) {
                     scope.scoreService = scoreService;

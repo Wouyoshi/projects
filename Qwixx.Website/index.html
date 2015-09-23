@@ -6,11 +6,36 @@
     <link href="Content/bootstrap.min.css" rel="stylesheet" />
     <link href="Content/bootstrap-theme.min.css" rel="stylesheet" />
     <link href="Content/ui-bootstrap-csp.css" rel="stylesheet" />
+    <link href="Content/tiles.css" rel="stylesheet" />
 </head>
-<body>
+<body ng-app="qwixx">
     <!-- Step 1: type your name
          Step 2: create a game or join an existing game-->
+    <div class="container dynamicTile">
+        <div class="row">
+            <div class="col-sm-2 col-xs-4">
+                <div id="tile8" class="tile">
+                    <div class="carousel slide" data-ride="carousel">
+                        <!-- Wrapper for slides -->
+                        <div class="carousel-inner">
+                            <div class="item active text-center">
+                                <div>
+                                    <qwixx-die color="'white'" dice-number="'2'"></qwixx-die> / <qwixx-die color="'white'" dice-number="'4'"></qwixx-die>
+                                </div>
+                                <div class="icontext">
+                                    Wait time
+                                </div>
+                                <div class="icontext">
+                                    Low
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="form-group">
         <label for="name">What is your name?</label>
         <input id="name" type="text" class="form-control" />
@@ -31,7 +56,7 @@
             <h5>Mamaloe</h5>
         </div>
     </div>
-    <div ng-app="qwixx">
+    <div>
         <qwixx-game></qwixx-game>
 
     </div>

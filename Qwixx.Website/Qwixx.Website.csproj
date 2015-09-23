@@ -68,6 +68,7 @@
     <Content Include="Content\Icons\lock-icon-green.png" />
     <Content Include="Content\Icons\lock-icon-red.png" />
     <Content Include="Content\Icons\lock-icon-yellow.png" />
+    <Content Include="Content\tiles.css" />
     <Content Include="Content\ui-bootstrap-csp.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="qwixx-card.html" />
