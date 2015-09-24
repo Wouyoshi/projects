@@ -71,6 +71,7 @@
     <Content Include="Content\tiles.css" />
     <Content Include="Content\ui-bootstrap-csp.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="game-tile.html" />
     <Content Include="qwixx-card.html" />
     <Content Include="qwixx-dice.html" />
     <Content Include="qwixx-die.html" />
