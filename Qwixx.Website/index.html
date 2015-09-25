@@ -11,30 +11,11 @@
 <body ng-app="qwixx">
     <!-- Step 1: type your name
          Step 2: create a game or join an existing game-->
-    <div class="container dynamicTile">
-        <div class="row">
-            <div class="col-sm-2 col-xs-4">
-                <div id="tile8" class="tile">
-                    <div class="carousel slide" data-ride="carousel">
-                        <!-- Wrapper for slides -->
-                        <div class="carousel-inner">
-                            <div class="item active text-center">
-                                <div class="icontext">
-                                    <qwixx-die color="'white'" dice-number="'2'"></qwixx-die> / <qwixx-die color="'white'" dice-number="'4'"></qwixx-die>
-                                </div>
-                                <div class="icontext">
-                                    Game name
-                                </div>
-                                <div class="icontext">
-                                    Host name
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    <game-tile player-count="'3'" max-player-count="'5'" host-name="'Host name'" game-name="'Game name'"></game-tile>
+    <game-tile player-count="'1'" max-player-count="'5'" host-name="'Cool host'" game-name="'Awesome game'"></game-tile>
+    <game-tile player-count="'1'" max-player-count="'3'" host-name="'Pipo de clown'" game-name="'Super game'"></game-tile>
+    <game-tile player-count="'1'" max-player-count="'5'" host-name="'Hostie'" game-name="'Tostie'"></game-tile>
+
     <div class="form-group">
         <label for="name">What is your name?</label>
         <input id="name" type="text" class="form-control" />
@@ -65,5 +46,6 @@
     <script src="Scripts/angular-ui/ui-bootstrap.min.js"></script>
     <script src="Scripts/angular-ui/ui-bootstrap-tpls.min.js"></script>
     <script src="Scripts/app.js"></script>
+    <script src="Scripts/gameTile.js"></script>
 </body>
 </html>
