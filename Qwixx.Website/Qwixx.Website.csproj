@@ -69,6 +69,7 @@
     <Content Include="Content\Icons\lock-icon-green.png" />
     <Content Include="Content\Icons\lock-icon-red.png" />
     <Content Include="Content\Icons\lock-icon-yellow.png" />
+    <Content Include="Content\qwixx-card.css" />
     <Content Include="Content\tiles.css" />
     <Content Include="Content\ui-bootstrap-csp.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -117,10 +118,6 @@
     <Content Include="Scripts\angular-animate.min.js.map" />
     <Content Include="Scripts\angular.min.js.map" />
     <Content Include="packages.config" />
-    <Content Include="Content\qwixx-card.less" />
-    <Content Include="Content\qwixx-card.css.map">
-      <DependentUpon>qwixx-card.css</DependentUpon>
-    </Content>
     <Content Include="Scripts\jquery-1.9.1.min.map" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -130,12 +127,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\qwixx-card.css">
-      <DependentUpon>qwixx-card.less</DependentUpon>
-    </Content>
-    <Content Include="Content\qwixx-card.min.css">
-      <DependentUpon>qwixx-card.css</DependentUpon>
-    </Content>
     <Content Include="index.html" />
     <Content Include="Scripts\angular-animate.js" />
     <Content Include="Scripts\angular-animate.min.js" />

@@ -13,6 +13,7 @@
     .qwixx-die-tiny .qwixx-die{
         width:15px;
         height:15px;
+        border-radius:3px;
     }
 
 .qwixx-die-dot{
@@ -42,7 +43,7 @@
     top: 2px;
 }
     .qwixx-die-tiny .qwixx-die-top-right{
-        left:9px;
+        left:8px;
         top: 1px;
     }
 
@@ -62,7 +63,7 @@
     top: 11px;
 }
     .qwixx-die-tiny .qwixx-die-middle-right{
-        left:9px;
+        left:8px;
         top: 5px;
     }
 
@@ -73,7 +74,7 @@
 }
     .qwixx-die-tiny .qwixx-die-bottom-left{
         left:2px;
-        top: 10px;
+        top: 9px;
     }
 
 .qwixx-die-bottom-right{
@@ -82,8 +83,8 @@
     top: 20px;
 }
     .qwixx-die-tiny .qwixx-die-bottom-right{
-        left:9px;
-        top: 10px;
+        left:8px;
+        top: 9px;
     }
 
 .qwixx-die-middle{

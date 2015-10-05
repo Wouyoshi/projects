@@ -7,10 +7,12 @@
                     <div class="carousel-inner">
                         <div class="item active text-center">
                             <div class="icontext">
-                                <qwixx-die class="qwixx-die-tiny" color="'white'" dice-number="playerCount"></qwixx-die> / <qwixx-die class="qwixx-die-tiny"" color="'white'" dice-number="maxPlayerCount"></qwixx-die>
-                            </div>
-                            <div class="icontext">
-                                {{gameName}}
+                                <div class="game-name">{{gameName}}</div>
+                                <div class="die-player-count">
+                                    <qwixx-die class="qwixx-die-tiny die-top-left" color="'white'" dice-number="playerCount"></qwixx-die>
+                                    <div class="die-dash"></div>
+                                    <qwixx-die class="qwixx-die-tiny die-bottom-right" color="'white'" dice-number="maxPlayerCount"></qwixx-die>
+                                </div>
                             </div>
                             <div class="icontext">
                                 {{hostName}}
