@@ -1,17 +1,19 @@
 ﻿<div class="container dynamicTile">
     <div class="row">
-        <div class="col-sm-2 col-xs-4">
-            <div id="tile8" class="tile">
+        <div class="col-sm-2 col-xs-4" >
+            <div class="tile" ng-class="tileColor">
                 <div class="carousel slide" data-ride="carousel">
                     <!-- Wrapper for slides -->
                     <div class="carousel-inner">
                         <div class="item active text-center">
                             <div class="icontext">
                                 <div class="game-name">{{gameName}}</div>
+                            </div>
+                            <div class="icontext">
                                 <div class="die-player-count">
-                                    <qwixx-die class="qwixx-die-tiny die-top-left" color="'white'" dice-number="playerCount"></qwixx-die>
+                                    <qwixx-die class="qwixx-die-tiny die-top-left" color="dieColor" dice-number="playerCount"></qwixx-die>
                                     <div class="die-dash"></div>
-                                    <qwixx-die class="qwixx-die-tiny die-bottom-right" color="'white'" dice-number="maxPlayerCount"></qwixx-die>
+                                    <qwixx-die class="qwixx-die-tiny die-bottom-right" color="dieColor" dice-number="maxPlayerCount"></qwixx-die>
                                 </div>
                             </div>
                             <div class="icontext">

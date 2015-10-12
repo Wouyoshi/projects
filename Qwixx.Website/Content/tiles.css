@@ -1,26 +1,29 @@
 ﻿
 .game-name {
+    text-align: center;
     display: inline-block;
-    width: 80px;
 }
 .die-player-count {
     display: inline-block;
     vertical-align: top;
-    width: 80px;
+    width: 27%;
+    position: relative;
 }
+    
+
 .die-dash {
     position: absolute;
     background-color: white;
-    top: 3px;
-    right: 15px;
+    top: -2px;
+    right: 17px;
     width: 2px;
-    height: 30px;
+    height: 40px;
     transform: rotate(45deg);
 }
     .die-player-count .qwixx-die-tiny.die-top-left{
         position: absolute;
         top: -12px;
-        right: 16px;
+        right: 18px;
     }
 
     .die-player-count .qwixx-die-tiny.die-bottom-right{
