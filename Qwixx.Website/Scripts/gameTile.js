@@ -11,8 +11,8 @@
                 maxPlayerCount: "=",
                 gameName: "=",
                 hostName: "=",
-                tileColor: "=",
-                dieColor: "="
+                dieColor: "=",
+                tileClass: "="
             }
         };
     });

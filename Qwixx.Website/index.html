@@ -10,37 +10,20 @@
     <link href="Content/colors.css" rel="stylesheet" />
 </head>
 <body ng-app="qwixx">
-    <!-- Step 1: type your name
-         Step 2: create a game or join an existing game-->
-    <game-tile player-count="'3'" max-player-count="'5'" host-name="'Host name'" game-name="'Game name'" tile-color="'color-background-1'" die-color="'white'"></game-tile>
-    <game-tile player-count="'1'" max-player-count="'5'" host-name="'Cool host'" game-name="'Awesome game'" tile-color="'color-background-1'" die-color="'red'"></game-tile>
-    <game-tile player-count="'1'" max-player-count="'3'" host-name="'Pipo de clown'" game-name="'Super game'"  tile-color="'color-background-4'" die-color="'blue'"></game-tile>
-    <game-tile player-count="'1'" max-player-count="'5'" host-name="'Hostie'" game-name="'Tostie'"  tile-color="'color-background-3'" die-color="'green'"></game-tile>
-    <game-tile player-count="'4'" max-player-count="'5'" host-name="'Hostie de Hostname'" game-name="'Gostie de game name'" tile-color="'color-background-3'" die-color="'green'"></game-tile>
+<!-- Step 1: type your name
+     Step 2: create a game or join an existing game-->
 
-    <div class="form-group">
-        <label for="name">What is your name?</label>
-        <input id="name" type="text" class="form-control" />
+    <div>
+        <game-overview></game-overview>
     </div>
-    <div class="form-group">
-        <button class="btn btn-info">Create new game</button>
-    </div>
-    <div class="panel panel-default ">
-        <div class="panel-body">
-            <h4>Not a great game <span class="label label-default">2/5</span></h4>
-            <h5>Pipo de Clown</h5>
-            <button class="btn btn-lg">Join</button>
-        </div>
-    </div>
-    <div class="panel panel-default">
-        <div class="panel-body">
-            <h4>Super game <span class="label label-default">1/5</span></h4>
-            <h5>Mamaloe</h5>
-        </div>
-    </div>
+    <br/>
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
     <div>
         <qwixx-game></qwixx-game>
-
     </div>
 
 
@@ -49,5 +32,6 @@
     <script src="Scripts/angular-ui/ui-bootstrap-tpls.min.js"></script>
     <script src="Scripts/app.js"></script>
     <script src="Scripts/gameTile.js"></script>
+    <script src="Scripts/gameOverview.js"></script>
 </body>
 </html>

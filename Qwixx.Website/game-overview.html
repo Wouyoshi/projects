@@ -1,0 +1,16 @@
+﻿<div class="game-overview">
+    <div class="form-group">
+        <label for="name">What is your name?</label>
+        <input id="name" type="text" class="form-control" ng-model="player.playerName" />
+    </div>
+    <div class="form-group">
+        <label for="max-players">Max players</label>
+        <input id="max-players" type="number" min="2" max="5" class="form-control" value="5" ng-model="game.maxPlayerCount"/>
+        <label for="game-name">Game name</label>
+        <input id="game-name" type="text" class="form-control" ng-model="game.gameName"/>
+        <button class="btn btn-info" ng-click="addGame()">Create new game</button>
+    </div>
+    <div ng-repeat="tile in tiles">
+        <game-tile player-count="tile.playerCount" max-player-count="tile.maxPlayerCount" host-name="tile.hostName" game-name="tile.gameName" tile-class="tile.tileClass" die-color="tile.dieColor"></game-tile>
+    </div>
+</div>

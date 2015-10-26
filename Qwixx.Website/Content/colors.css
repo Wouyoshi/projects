@@ -12,14 +12,30 @@
 }
 
 .color-text-1 {
-    color: #edcdd8;
+    color: #a90d1a;
 }
 .color-text-2 {
-    background-color: #e9f4e4;
+    color: #ebaa06;
 }
 .color-text-3 {
-    background-color: #c6e7ec;
+    color: #005b39;
 }
 .color-text-4 {
-    background-color: #b5c7ef;
+    color: #000f4f;
+}
+
+.color-border-1 {
+    border-color: #440210;
+}
+
+.color-border-2 {
+    border-color: #9c5408;
+}
+
+.color-border-3 {
+    border-color: #063128;
+}
+
+.color-border-4 {
+    border-color: #00072a;
 }
