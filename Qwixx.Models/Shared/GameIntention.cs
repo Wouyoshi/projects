@@ -14,11 +14,21 @@
         public string Host { get; private set; }
         public int MaxPlayers { get; private set; }
 
-        public GameIntention(int maxPlayers, string host)
+        public string GameName { get; private set; }
+
+        public GameIntention(int maxPlayers, string host, string gameName)
         {
             if (string.IsNullOrWhiteSpace(host))
             {
-                throw new ArgumentNullException(host);
+                throw new ArgumentNullException(nameof(host));
+            }
+            if (string.IsNullOrWhiteSpace(gameName))
+            {
+                throw new ArgumentNullException(nameof(gameName));
+            }
+            if (maxPlayers < 2)
+            {
+                throw new ArgumentException("Minimum of 2 players are required.");
             }
             _players = new List<string> { host };
             _incomingPlayers = new ConcurrentQueue<string>();
@@ -26,6 +36,7 @@
 
             MaxPlayers = maxPlayers;
             Host = host;
+            GameName = gameName;
         }
 
         private void CheckQueues()

@@ -41,6 +41,7 @@
   <ItemGroup>
     <Compile Include="GameCacheStorage.cs" />
     <Compile Include="GameStorageException.cs" />
+    <Compile Include="IGameIntentionStorage.cs" />
     <Compile Include="IGameStorage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -19,7 +19,7 @@ namespace Qwixx.Models
         {
             if (players == null)
             {
-                throw new ArgumentNullException("players");
+                throw new ArgumentNullException(nameof(players));
             }
             Players = players;
             var dice = new List<Die>() {

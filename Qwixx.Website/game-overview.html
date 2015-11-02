@@ -11,6 +11,6 @@
         <button class="btn btn-info" ng-click="addGame()">Create new game</button>
     </div>
     <div ng-repeat="tile in tiles">
-        <game-tile player-count="tile.playerCount" max-player-count="tile.maxPlayerCount" host-name="tile.hostName" game-name="tile.gameName" tile-class="tile.tileClass" die-color="tile.dieColor"></game-tile>
+        <game-tile ng-click="joinGame(tile.gameName)" player-count="tile.playerCount" max-player-count="tile.maxPlayerCount" host-name="tile.hostName" game-name="tile.gameName" tile-class="tile.tileClass" die-color="tile.dieColor"></game-tile>
     </div>
 </div>
