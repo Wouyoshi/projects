@@ -16,6 +16,8 @@
 
         public string GameName { get; private set; }
 
+        public Guid Identifier { get; private set; }
+
         public GameIntention(int maxPlayers, string host, string gameName)
         {
             if (string.IsNullOrWhiteSpace(host))
@@ -37,6 +39,7 @@
             MaxPlayers = maxPlayers;
             Host = host;
             GameName = gameName;
+            Identifier = Guid.NewGuid();
         }
 
         private void CheckQueues()
@@ -72,7 +75,7 @@
         {
             if (string.IsNullOrWhiteSpace(player))
             {
-                throw new ArgumentNullException("player");
+                throw new ArgumentNullException(nameof(player));
             }
             _incomingPlayers.Enqueue(player);
         }
@@ -81,7 +84,7 @@
         {
             if (string.IsNullOrWhiteSpace(player))
             {
-                throw new ArgumentNullException("player");
+                throw new ArgumentNullException(nameof(player));
             }
             _outgoingPlayers.Enqueue(player);
         }

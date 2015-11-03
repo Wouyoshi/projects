@@ -10,7 +10,7 @@
         
         public Game Get(Guid id)
         {
-            Game returnValue = null;
+            Game returnValue;
             Dictionary.TryGetValue(id, out returnValue);
             return returnValue;
         }
@@ -19,7 +19,7 @@
         {
             if (game == null)
             {
-                throw new ArgumentNullException("game");
+                throw new ArgumentNullException(nameof(game));
             }
             var added = Dictionary.TryAdd(game.Identifier, game);
             if (!added)
@@ -32,15 +32,15 @@
         {
             if (game == null)
             {
-                throw new ArgumentNullException("game");
+                throw new ArgumentNullException(nameof(game));
             }
             var existingGame = Get(game.Identifier);
             if (existingGame == null)
             {
                 throw new GameStorageException("Can't update unexisting game: " + game.Identifier);
             }
-            var added = Dictionary.TryUpdate(game.Identifier, game, existingGame);
-            if (!added)
+            var updated = Dictionary.TryUpdate(game.Identifier, game, existingGame);
+            if (!updated)
             {
                 throw new GameStorageException("Could not update game: " + game.Identifier);
             }

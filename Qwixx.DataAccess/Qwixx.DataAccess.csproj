@@ -40,6 +40,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="GameCacheStorage.cs" />
+    <Compile Include="GameIntentionCacheStorage.cs" />
+    <Compile Include="GameIntentionStorageException.cs" />
     <Compile Include="GameStorageException.cs" />
     <Compile Include="IGameIntentionStorage.cs" />
     <Compile Include="IGameStorage.cs" />

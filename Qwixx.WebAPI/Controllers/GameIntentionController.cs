@@ -10,39 +10,47 @@
     public class GameIntentionController : ApiController
     {
 
-        private readonly IGameStorage _gameStorage;
+        private readonly IGameIntentionStorage _gameIntentionStorage;
 
-        public GameIntentionController(IGameStorage gameStorage)
+        public GameIntentionController(IGameIntentionStorage gameIntentionStorage)
         {
-            _gameStorage = gameStorage;
+            _gameIntentionStorage = gameIntentionStorage;
         }
         public IEnumerable<GameIntention> Get()
         {
-            return null;
+            return _gameIntentionStorage.Get();
         }
 
         public GameIntention Get(Guid id)
         {
-            return null;
+            return _gameIntentionStorage.Get(id);
         }
         
         public void Post([FromBody]GameIntention gameIntention)
         {
+            _gameIntentionStorage.Add(gameIntention);
         }
 
 
         [HttpPost]
-        public void Join(Guid id)
+        public IHttpActionResult Join(Guid id, string player)
         {
+            var gameIntention = _gameIntentionStorage.Get(id);
+            if (gameIntention == null)
+            {
+                return NotFound();
+            }
+            gameIntention.Join(player);
         }
 
         public void Put(Guid id, [FromBody]GameIntention gameIntention)
         {
+            _gameIntentionStorage.Update(gameIntention);
         }
 
         public void Delete(Guid id)
         {
-            _gameStorage.Delete(id);
+            _gameIntentionStorage.Delete(id);
         }
     }
 }
