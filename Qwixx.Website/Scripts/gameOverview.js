@@ -2,6 +2,23 @@
     "use strict";
     var app = angular.module("qwixx");
 
+    app.factory("gameList", function() {
+
+        var gameList = {};
+        gameList.getGames = function () {
+            var games = [];
+            $http({
+                method: 'GET',
+                url: 'http://localhost:/Qwixx.WebAPI/GameIntention'
+            }).then(function successCallback(response) {
+                games = response;
+            }, function errorCallback(response) {
+                // called asynchronously if an error occurs
+                // or server returns response with an error status.
+            });
+            return games;
+        };
+    });
     
     app.controller("gameOverviewController", [
         "$scope", function ($scope) {
