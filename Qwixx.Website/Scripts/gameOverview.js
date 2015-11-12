@@ -52,7 +52,7 @@
             controller: "gameOverviewController"
         };
     });
-    app.factory("gameListService", function () {
+    app.factory("gameListService", ["$http", function ($http) {
 
         var gameList = {};
         gameList.getGames = function () {
@@ -79,5 +79,5 @@
                     });
         };
         return gameList;
-    });
+    }]);
 })();
