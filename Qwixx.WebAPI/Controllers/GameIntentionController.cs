@@ -7,6 +7,7 @@
 
     using Models.Shared;
 
+    [RoutePrefix("api/gameintention")]
     public class GameIntentionController : ApiController
     {
 
@@ -16,11 +17,14 @@
         {
             _gameIntentionStorage = gameIntentionStorage;
         }
+        
+        [HttpGet]
         public IEnumerable<GameIntention> Get()
         {
             return _gameIntentionStorage.Get();
         }
-
+        
+        [HttpGet]
         public GameIntention Get(Guid id)
         {
             return _gameIntentionStorage.Get(id);
@@ -41,6 +45,7 @@
                 return NotFound();
             }
             gameIntention.Join(player);
+            return Ok();
         }
 
         public void Put(Guid id, [FromBody]GameIntention gameIntention)

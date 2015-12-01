@@ -59,7 +59,7 @@
             var games = [];
             $http({
                 method: 'GET',
-                url: 'http://localhost/Qwixx.WebAPI/GameIntention'
+                url: 'http://localhost/Qwixx.WebAPI/api/GameIntention'
             }).then(function successCallback(response) {
                 games = response;
             }, function errorCallback(response) {
