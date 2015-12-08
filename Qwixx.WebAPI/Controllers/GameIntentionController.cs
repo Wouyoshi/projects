@@ -21,7 +21,8 @@
         [HttpGet]
         public IEnumerable<GameIntention> Get()
         {
-            return _gameIntentionStorage.Get();
+            var gameIntentions = _gameIntentionStorage.Get();
+            return gameIntentions;
         }
         
         [HttpGet]

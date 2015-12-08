@@ -14,7 +14,7 @@
     <RootNamespace>Qwixx.Website</RootNamespace>
     <AssemblyName>Qwixx.Website</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
-    <UseIISExpress>true</UseIISExpress>
+    <UseIISExpress>false</UseIISExpress>
     <IISExpressSSLPort />
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
@@ -920,7 +920,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>65524</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:65524/</IISUrl>
+          <IISUrl>http://localhost/Qwixx.Website</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

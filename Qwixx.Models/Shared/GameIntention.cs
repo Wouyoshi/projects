@@ -18,6 +18,12 @@ namespace Qwixx.Models.Shared
         /// </summary>
         private Timer _timer;
 
+        public int PlayerCount {
+            get
+            {
+                return _players == null ? 0 : _players.Count;
+            }
+            private set { throw new InvalidOperationException("Read Only"); } }
 
         public string Host { get; private set; }
         public int MaxPlayers { get; private set; }
@@ -26,38 +32,46 @@ namespace Qwixx.Models.Shared
 
         public Guid Identifier { get; private set; }
 
-        public GameIntention(int maxPlayers, string host, string gameName)
+        public GameIntention(int maxPlayerCount, string hostName, string gameName)
         {
-            if (string.IsNullOrWhiteSpace(host))
+            if (string.IsNullOrWhiteSpace(hostName))
             {
-                throw new ArgumentNullException(nameof(host));
+                throw new ArgumentNullException(nameof(hostName));
             }
             if (string.IsNullOrWhiteSpace(gameName))
             {
                 throw new ArgumentNullException(nameof(gameName));
             }
-            if (maxPlayers < 2)
+            if (maxPlayerCount < 2)
             {
                 throw new ArgumentException("Minimum of 2 players are required.");
             }
-            if (maxPlayers > 5)
+            if (maxPlayerCount > 5)
             {
                 throw new ArgumentException("Maximum of 5 players are required.");
             }
-            _players = new List<string> {host};
+            _players = new List<string> { hostName };
             _incomingPlayers = new ConcurrentQueue<string>();
             _outgoingPlayers = new ConcurrentQueue<string>();
 
-            MaxPlayers = maxPlayers;
-            Host = host;
+            MaxPlayers = maxPlayerCount;
+            Host = hostName;
             GameName = gameName;
             Identifier = Guid.NewGuid();
 
-            // Create new timer and start it.
+            // Create new timer
             _timer = new Timer(100);
             _timer.Elapsed += CheckQueues;
+        }
+        public void Start()
+        {
             _timer.Start();
         }
+        public void Stop()
+        {
+            _timer.Stop();
+        }
+
 
 
         /// <summary>
@@ -70,9 +84,9 @@ namespace Qwixx.Models.Shared
 
         private void CheckQueues(object sender, ElapsedEventArgs args)
         {
-            _timer.Stop();
+            Start();
             CheckQueues();
-            _timer.Start();
+            Stop();
         }
 
         private void CheckQueues()
