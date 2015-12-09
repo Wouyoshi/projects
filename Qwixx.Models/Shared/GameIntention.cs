@@ -18,12 +18,17 @@ namespace Qwixx.Models.Shared
         /// </summary>
         private Timer _timer;
 
-        public int PlayerCount {
+        public int PlayerCount
+        {
             get
             {
                 return _players == null ? 0 : _players.Count;
             }
-            private set { throw new InvalidOperationException("Read Only"); } }
+            private set
+            {
+                throw new InvalidOperationException("Read Only");
+            }
+        }
 
         public string Host { get; private set; }
         public int MaxPlayers { get; private set; }
