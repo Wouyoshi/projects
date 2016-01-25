@@ -12,26 +12,18 @@
 <body ng-app="qwixx">
 <!-- Step 1: type your name
      Step 2: create a game or join an existing game-->
-
-    <div>
-        <game-overview></game-overview>
-    </div>
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <div>
-        <qwixx-game></qwixx-game>
-    </div>
-
+    
+    <div ng-view></div>    
 
     <script src="Scripts/angular.min.js"></script>
     <script src="Scripts/angular-ui/ui-bootstrap.min.js"></script>
     <script src="Scripts/angular-ui/ui-bootstrap-tpls.min.js"></script>
+    <script src="Scripts/angular-route.min.js"></script>
     <script src="Scripts/app.js"></script>
-    <script src="Scripts/gameTile.js"></script>
+    <script src="Scripts/gameUtilities.js"></script>
     <script src="Scripts/gameOverview.js"></script>
+    <script src="Scripts/gameTile.js"></script>
+    <script src="Scripts/gameDie.js"></script>
+    <script src="Scripts/routings.js"></script>
 </body>
 </html>

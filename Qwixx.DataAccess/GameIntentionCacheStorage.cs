@@ -28,6 +28,8 @@
             {
                 throw new ArgumentNullException(nameof(gameIntention));
             }
+            // Start the queue.
+            gameIntention.Start();
             var added = Dictionary.TryAdd(gameIntention.Identifier, gameIntention);
             if (!added)
             {

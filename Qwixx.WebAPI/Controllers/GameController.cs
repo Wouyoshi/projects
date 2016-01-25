@@ -1,23 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
-using System.Web.Http;
-using Qwixx.Models;
+﻿
 
 namespace Qwixx.WebAPI.Controllers
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Web.Http;
+
+    using Qwixx.Models;
     using DataAccess;
 
     public class GameController : ApiController
     {
 
-        private readonly IGameStorage _gameStorage;
+        private readonly IGameIntentionStorage _gameIntentionStorage;
 
-        public GameController(IGameStorage gameStorage)
+        public GameController(IGameIntentionStorage gameIntentionStorage)
         {
-            _gameStorage = gameStorage;
+            _gameIntentionStorage = gameIntentionStorage;
         }
         public IEnumerable<Game> Get()
         {
@@ -26,23 +25,31 @@ namespace Qwixx.WebAPI.Controllers
 
         public Game Get(Guid id)
         {
-            var game = _gameStorage.Get(id);
-            return game;
+            var gameIntention = _gameIntentionStorage.Get(id);
+            if (gameIntention == null)
+            {
+                return null;
+            }
+            return gameIntention.GetGame();
         }
         
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="gameIntention"></param>
         public void Post([FromBody]Game game)
         {
-            _gameStorage.Add(game);
+            // _gameStorage.Add(game);
         }
 
         public void Put(Guid id, [FromBody]Game game)
         {
-            _gameStorage.Update(game);
+            //_gameStorage.Update(game);
         }
 
         public void Delete(Guid id)
         {
-            _gameStorage.Delete(id);
+            // _gameStorage.Delete(id);
         }
     }
 }

@@ -1,11 +1,11 @@
 ﻿(function () {
     "use strict";
-    var app = angular.module("qwixx");
+    var app = angular.module("qwixxGameOverview", []);
 
 
     
     app.controller("gameOverviewController", [
-        "$scope", "gameListService", function ($scope, gameListService) {
+        "$scope", "$location", "gameListService", function ($scope, $location, gameListService) {
             $scope.player = {
                 playerName: ""
             };
@@ -26,13 +26,9 @@
                 };
                 gameListService.addGame(game, $scope);
             };
-            $scope.joinGame = function (gameName) {
-                for (var i = 0; i < $scope.tiles.length; i++) {
-                    if ($scope.tiles[i].gameName === gameName) {
-                        $scope.tiles[i].players.push(this.player);
-                        $scope.tiles[i].playerCount++;
-                    }
-                }
+            $scope.joinGame = function (identifier) {
+                gameListService.joinGame(identifier, $scope.player.playerName, $scope);
+                $location.path('/' + identifier);
             };
         }
     ]);
@@ -83,6 +79,7 @@
                         playerCount: respData.PlayerCount,
                         tileClass: gameList.getTileClass(i),
                         dieColor: gameList.getDieColor(i),
+                        id: respData.Identifier,
                         players: []
                     };
                     games.push(game);
@@ -96,6 +93,17 @@
         };
         gameList.addGame = function (game, $scope) {
             $http.post('http://localhost/Qwixx.WebAPI/api/GameIntention', game)
+                .then(function successCallback(response) {
+                    response = response;
+                    gameList.getGames($scope);
+                }, function errorCallback(response) {
+                    // called asynchronously if an error occurs
+                    // or server returns response with an error status.
+                    response = response;
+                });
+        };
+        gameList.joinGame = function (identifier, playerName, $scope) {
+            $http.post('http://localhost/Qwixx.WebAPI/api/GameIntention/Join/' + identifier + '/' +  playerName)
                 .then(function successCallback(response) {
                     response = response;
                     gameList.getGames($scope);

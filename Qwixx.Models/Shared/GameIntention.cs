@@ -1,7 +1,7 @@
-﻿using System.Timers;
-
-namespace Qwixx.Models.Shared
+﻿namespace Qwixx.Models.Shared
 {
+    using System.Timers;
+
     using System;
     using System.Collections.Concurrent;
     using System.Collections.Generic;
@@ -10,8 +10,9 @@ namespace Qwixx.Models.Shared
     {
         private readonly ConcurrentQueue<string> _incomingPlayers;
         private readonly ConcurrentQueue<string> _outgoingPlayers;
-
         private readonly List<string> _players;
+
+        private Game _game;        
 
         /// <summary>
         /// The timer.
@@ -23,6 +24,21 @@ namespace Qwixx.Models.Shared
             get
             {
                 return _players == null ? 0 : _players.Count;
+            }
+            private set
+            {
+                throw new InvalidOperationException("Read Only");
+            }
+        }
+
+        /// <summary>
+        /// IsReady determines whether this game intention has created a game.
+        /// </summary>
+        public bool IsReady
+        {
+            get
+            {
+                return _game != null;
             }
             private set
             {
@@ -77,7 +93,14 @@ namespace Qwixx.Models.Shared
             _timer.Stop();
         }
 
-
+        /// <summary>
+        /// Function to get the game.
+        /// </summary>
+        /// <returns></returns>
+        public Game GetGame()
+        {
+            return _game;
+        }
 
         /// <summary>
         /// The finalizer.
@@ -89,9 +112,23 @@ namespace Qwixx.Models.Shared
 
         private void CheckQueues(object sender, ElapsedEventArgs args)
         {
-            Start();
-            CheckQueues();
             Stop();
+            CheckQueues();
+            CreateGameIfPossible();
+            Start();
+        }
+
+        private void CreateGameIfPossible()
+        {
+            if (PlayerCount == MaxPlayers)
+            {
+                var players = new List<Player>();
+                foreach(var playerName in _players)
+                {
+                    players.Add(new Player(playerName));
+                }
+                _game = new Game(players);
+            }
         }
 
         private void CheckQueues()

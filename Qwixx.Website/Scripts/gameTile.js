@@ -1,6 +1,6 @@
 ﻿(function() {
     "use strict";
-    var app = angular.module("qwixx");
+    var app = angular.module("gameUtilities");
 
     app.directive("gameTile", function () {
         return {

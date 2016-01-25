@@ -78,7 +78,7 @@
     <Content Include="game-tile.html" />
     <Content Include="qwixx-card.html" />
     <Content Include="qwixx-dice.html" />
-    <Content Include="qwixx-die.html" />
+    <Content Include="game-die.html" />
     <Content Include="qwixx-game.html" />
     <Content Include="qwixx-wasted.html" />
     <Content Include="qwixx-lock.html" />
@@ -93,6 +93,7 @@
     <Content Include="Scripts\angular-ui\ui-bootstrap-tpls.min.js" />
     <Content Include="Scripts\angular-ui\ui-bootstrap.js" />
     <Content Include="Scripts\angular-ui\ui-bootstrap.min.js" />
+    <Content Include="Scripts\gameDie.js" />
     <Content Include="Scripts\gameOverview.js" />
     <Content Include="Scripts\gameTile.js" />
     <Content Include="Scripts\app.js" />
@@ -105,8 +106,10 @@
     <None Include="Scripts\jquery-1.9.1.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\gameUtilities.js" />
     <Content Include="Scripts\jquery-1.9.1.js" />
     <Content Include="Scripts\jquery-1.9.1.min.js" />
+    <Content Include="Scripts\routings.js" />
     <Content Include="Scripts\version.json" />
     <Content Include="Scripts\errors.json" />
     <Content Include="Scripts\angular-touch.min.js.map" />

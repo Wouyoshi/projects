@@ -38,6 +38,7 @@
 
 
         [HttpPost]
+        [Route("join/{id}/{player}")]
         public IHttpActionResult Join(Guid id, string player)
         {
             var gameIntention = _gameIntentionStorage.Get(id);
